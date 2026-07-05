@@ -10,7 +10,7 @@
 // Web3Forms access key. Generate a free one (no account) at https://web3forms.com
 // by entering the destination email; the key is emailed to you. Paste it below.
 // The key is safe to expose in client-side code.
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY';
+const WEB3FORMS_ACCESS_KEY = '689521df-c6b2-499b-b2c2-3fb256798853';
 
 const DEFAULT_LOCALE = 'pt';        // 'pt' | 'en' — which language loads first
 const ENABLE_CURSOR_TRAIL = true;   // subtle colored dots trailing the cursor (desktop only)
