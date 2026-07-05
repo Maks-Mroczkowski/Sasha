@@ -29,6 +29,14 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
 }
 
+// Show/hide via the `hidden` content attribute. We use the attribute (not the
+// `.hidden` IDL property) because that property doesn't work on SVG elements —
+// and some things we toggle (the language circles) are SVG.
+function setHidden(el, hidden) {
+  if (hidden) el.setAttribute('hidden', '');
+  else el.removeAttribute('hidden');
+}
+
 /* ------------------------------- i18n ----------------------------------- */
 
 const locales = {};          // { en: {...}, pt: {...} } — filled by loadLocales()
@@ -71,7 +79,7 @@ function applyLocale(loc) {
     const active = btn.dataset.lang === loc;
     btn.setAttribute('aria-pressed', String(active));
     const circle = $('[data-langcircle]', btn);
-    if (circle) circle.hidden = !active;
+    if (circle) setHidden(circle, !active);
   });
 }
 
@@ -88,13 +96,13 @@ function initLanguageToggle() {
 
 function setView(group, value) {
   $$(`[data-view-panel="${group}"]`).forEach(panel => {
-    panel.hidden = panel.dataset.viewValue !== value;
+    setHidden(panel, panel.dataset.viewValue !== value);
   });
   $$(`[data-view-btn="${group}"]`).forEach(btn => {
     const active = btn.dataset.viewValue === value;
     btn.setAttribute('aria-pressed', String(active));
     const pill = $('[data-pill]', btn);
-    if (pill) pill.hidden = !active;
+    if (pill) setHidden(pill, !active);
   });
   // New content just became visible — re-evaluate scroll animations for it.
   onScroll();
