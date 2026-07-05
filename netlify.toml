@@ -1,0 +1,5 @@
+# Netlify reads this from the repo root. The website lives in the site/ folder,
+# so publish that as the web root. No build step — it's plain static files.
+[build]
+  publish = "site"
+  command = ""
