@@ -20,6 +20,10 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
 
 /* --- Keyframes --- */
 @keyframes floatcue{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(9px); } }
+/* Same bob, but preserves the translateX(-50%) horizontal centering the scroll-cue
+   pills rely on (a plain translateY animation would drop it and push them off-centre,
+   which clips inside the narrow phone frames). */
+@keyframes floatcue-center{ 0%,100%{ transform:translate(-50%,0); } 50%{ transform:translate(-50%,9px); } }
 @keyframes mn_marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 @keyframes mn_glow{ 0%,100%{ box-shadow:0 0 0 0 rgba(124,58,237,.55), 0 0 16px rgba(124,58,237,.45); } 50%{ box-shadow:0 0 0 7px rgba(124,58,237,0), 0 0 30px rgba(124,58,237,.8); } }
 @keyframes mn_flicker{ 0%,19%,21%,100%{ opacity:1; } 20%{ opacity:.55; } 63%{ opacity:1; } 65%{ opacity:.7; } }
@@ -60,6 +64,15 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
   #about p, #services p, #process p, #contact p{ font-size:17px !important; line-height:1.6 !important; }
   #process h4{ line-height:1.05 !important; }
 }
+/* All scroll-cue pills centre themselves with translateX(-50%); make their bob
+   animation keep that centring (see floatcue-center above). */
+[data-scrollcue]{ animation-name:floatcue-center !important; }
+
+/* Keep the "scroll to explore" cue compact and on one line inside the small
+   200px phone frames (higher specificity + !important so it also wins over the
+   <=600px bump). */
+[data-phonepair] [data-scrollcue]{ font-size:11px !important; padding:6px 12px !important; white-space:nowrap !important; }
+
 [data-mobilegrid]{ display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(28px,4vw,56px); align-items:center; }
 [data-mobilegrid] > div{ min-width:0; }
 [data-phonepair]{ max-width:100%; }
