@@ -1,0 +1,119 @@
+{
+  "role": "Website Designer",
+  "ui": { "scroll": "scroll to explore", "tap": "tap to switch", "before": "Before", "after": "After" },
+  "nav": { "work": "Work", "services": "Services & Prices", "process": "Process", "cta": "Let's talk" },
+  "headlines": {
+    "1": { "pre": "I make websites people actually ", "emph": "remember", "post": "." },
+    "2": { "pre": "Same business. ", "emph": "Unrecognisable", "post": " website." },
+    "3": { "pre": "Before me, ", "emph": "and after me", "post": "." }
+  },
+  "heroSub": "Websites for hotels, restaurants, and other businesses.",
+  "heroCta": "See the work",
+  "heroCta2": "Meet me first",
+  "scrollCue": "the fun part",
+  "meNote": "that's me",
+  "aboutKicker": "a little about me",
+  "about": {
+    "lead": "I'm Sasha. I make websites for hotels, restaurants, and bars: ",
+    "w1": "artful",
+    "mid1": " in how they look, ",
+    "w2": "intentional",
+    "mid2": " in every detail, and ",
+    "w3": "high-quality",
+    "tail": " from the first click to the last. I get to know your place first, then build a site that fits it. No templates.",
+    "p2": "I studied engineering at the University of Cambridge, and I bring that same structure to every site. I mostly work with hotels, restaurants, and bars, but I've also built for tech companies, fight clubs, and plenty of other businesses, small to large. Most of the companies I've worked with have been in London. Whatever yours is, I build the site around what it needs."
+  },
+  "transKicker": "the transformation",
+  "transIntro": "Here's the fun part",
+  "transBody": "Three examples: one site built from scratch, one older site made better, and one made to work properly on phones. Have a look.",
+  "transNote": "These examples are recreations. My real client work is kept private at their request.",
+  "rest": {
+    "service": "Creation · from scratch",
+    "vSketch": "The sketch",
+    "vSite": "Live site",
+    "lead": "A restaurant on the Brazilian coast that didn't have a website. I built one for them, from the first sketch to a site that brings in bookings.",
+    "story": [
+      { "n": "01", "t": "They had no website.", "d": "A small coastal restaurant. Bookings came by phone and DM, and a lot got missed." },
+      { "n": "02", "t": "We built it together.", "d": "I visited, we talked through what they needed, took photos of the food, and had the site live in three weeks." },
+      { "n": "03", "t": "Now it brings in bookings.", "d": "People book online before the restaurant opens, and weekends fill up early." }
+    ],
+    "stats": [
+      { "n": "+36", "l": "online bookings, first month" },
+      { "n": "1 wk", "l": "to build and launch" },
+      { "n": "100%", "l": "built for them" }
+    ],
+    "sketchNote": "where it started →",
+    "tryIt": "see the sketch →"
+  },
+  "hotel": {
+    "service": "Alteration & Improvement",
+    "before": "Before",
+    "after": "After",
+    "lead": "An older hotel site, redesigned. Same photos and content, but easier to use and better at getting bookings. Switch between Before and After to see what changed.",
+    "note": "A few things anyone would notice.",
+    "callouts": [
+      "Not a single price anywhere. You'd have to call just to find out what a room costs.",
+      "The photos are tiny, and none of them show the rooms.",
+      "It's cluttered and dated, the kind of site you don't quite trust.",
+      "No clear way to book. No dates, no button that stays with you."
+    ],
+    "resultKicker": "the result",
+    "resultSummary": "Rebuilt from scratch. Clear prices on every room, big real photos, and a booking bar that stays with you while you browse.",
+    "resultStats": [
+      { "n": "4 days", "l": "to redesign" },
+      { "n": "+42%", "l": "more online bookings" },
+      { "n": "3×", "l": "longer on the site" }
+    ]
+  },
+  "mobile": {
+    "service": "Mobile optimisation",
+    "name": "Maré Alta",
+    "kind": "Surf shop",
+    "lead": "Most people shop from their phone. This surf shop looked fine on a laptop but was a pain to actually buy from on a phone. I fixed that.",
+    "desktopLabel": "On a laptop",
+    "badLabel": "On a phone, before",
+    "goodLabel": "On a phone, after",
+    "badNote": "Cramped, cut off, hard to buy.",
+    "goodNote": "Clean, easy to browse and check out.",
+    "addonKicker": "the add-on",
+    "addon": "Phone optimisation",
+    "addonPrice": "+R$ — price to be discussed",
+    "addonNote": "Added to any project. This is where most of your customers actually shop.",
+    "stats": [
+      { "n": "72%", "l": "of visitors shop on a phone" },
+      { "n": "+38%", "l": "more sales from phones" },
+      { "n": "-22%", "l": "fewer abandoned carts" }
+    ]
+  },
+  "servKicker": "two ways in",
+  "priceLabel": "Every website is different, so prices are too. Most fall between",
+  "priceRange": "R$ 1,500 – R$ 7,000",
+  "priceNote": "The price depends on how big and complex the site is, how many changes you want, and how much creative work is involved. Bigger, more complex sites usually take up to a week.",
+  "serv1Title": "Alteration & Improvement",
+  "serv1Body": "You already have a website. I'll redesign it so it works better and looks the way you want.",
+  "serv1Sub": "Same content, better site.",
+  "serv2Title": "Creation",
+  "serv2Body": "No website yet? I'll design and build one from scratch.",
+  "serv2Sub": "From first sketch to finished site.",
+  "procKicker": "how I work",
+  "procTitle": "Five simple steps.",
+  "steps": [
+    { "t": "Listen", "d": "We talk about your business, your customers, and what you need the site to do." },
+    { "t": "Sketch", "d": "I plan the layout on paper before designing anything." },
+    { "t": "Build", "d": "I design and build the site by hand. No templates." },
+    { "t": "Launch", "d": "Your site goes live, quick and working properly." },
+    { "t": "Maintain", "d": "After launch I keep it updated and running well, and change it as you grow." }
+  ],
+  "contactKicker": "let's make something",
+  "contactTitle": "Let's create the perfect website for you and your customers, together.",
+  "contactSub": "Tell me about it. I answer every message.",
+  "fName": "Your name",
+  "fBiz": "Your place",
+  "fMsg": "Tell me about your place",
+  "fSend": "Send",
+  "goOn": "go on",
+  "thanks": "Thanks. I'll get back to you soon.",
+  "emailLabel": "Email",
+  "waLabel": "WhatsApp",
+  "footTag": "Made by hand."
+}

@@ -1,0 +1,119 @@
+{
+  "role": "Designer de Sites",
+  "ui": { "scroll": "role para explorar", "tap": "toque para trocar", "before": "Antes", "after": "Depois" },
+  "nav": { "work": "Trabalhos", "services": "Serviços & Preços", "process": "Processo", "cta": "Vamos conversar" },
+  "headlines": {
+    "1": { "pre": "Faço sites que as pessoas realmente ", "emph": "lembram", "post": "." },
+    "2": { "pre": "O mesmo negócio. ", "emph": "Outro site", "post": " completamente." },
+    "3": { "pre": "Antes de mim, ", "emph": "e depois de mim", "post": "." }
+  },
+  "heroSub": "Sites para hotéis, restaurantes e outros negócios.",
+  "heroCta": "Ver os trabalhos",
+  "heroCta2": "Me conheça antes",
+  "scrollCue": "a melhor parte",
+  "meNote": "sou eu",
+  "aboutKicker": "um pouco sobre mim",
+  "about": {
+    "lead": "Sou Sasha. Faço sites para hotéis, restaurantes e bares: ",
+    "w1": "com arte",
+    "mid1": " na aparência, ",
+    "w2": "intencionais",
+    "mid2": " em cada detalhe e ",
+    "w3": "de qualidade",
+    "tail": " do primeiro ao último clique. Primeiro conheço o seu lugar, depois crio um site com a cara dele. Sem templates.",
+    "p2": "Estudei engenharia na Universidade de Cambridge e trago essa mesma estrutura para cada site. Trabalho principalmente com hotéis, restaurantes e bares, mas também já criei sites para empresas de tecnologia, clubes de luta e vários outros negócios, pequenos e grandes. A maioria das empresas com quem trabalhei fica em Londres. Seja qual for o seu, crio o site em torno do que ele precisa."
+  },
+  "transKicker": "a transformação",
+  "transIntro": "Agora vem a parte boa",
+  "transBody": "Três exemplos: um site criado do zero, um site antigo melhorado e um feito para funcionar bem no celular. Dê uma olhada.",
+  "transNote": "Estes exemplos são recriações. O trabalho real dos meus clientes fica privado, a pedido deles.",
+  "rest": {
+    "service": "Criação · do zero",
+    "vSketch": "O rascunho",
+    "vSite": "Site no ar",
+    "lead": "Um restaurante no litoral brasileiro que não tinha site. Criei um para eles, do primeiro rascunho a um site que traz reservas.",
+    "story": [
+      { "n": "01", "t": "Eles não tinham site.", "d": "Um restaurante pequeno no litoral. As reservas chegavam por telefone e DM, e muitas se perdiam." },
+      { "n": "02", "t": "Criamos juntos.", "d": "Fui até lá, conversamos sobre o que precisavam, tiramos fotos dos pratos e o site ficou pronto em três semanas." },
+      { "n": "03", "t": "Agora traz reservas.", "d": "As pessoas reservam online antes de o restaurante abrir, e os fins de semana enchem cedo." }
+    ],
+    "stats": [
+      { "n": "+36", "l": "reservas online no 1º mês" },
+      { "n": "1 sem", "l": "para criar e publicar" },
+      { "n": "100%", "l": "feito para eles" }
+    ],
+    "sketchNote": "onde tudo começou →",
+    "tryIt": "ver o rascunho →"
+  },
+  "hotel": {
+    "service": "Reforma & Melhoria",
+    "before": "Antes",
+    "after": "Depois",
+    "lead": "Um site de hotel antigo, redesenhado. As mesmas fotos e o mesmo conteúdo, mas mais fácil de usar e melhor para conseguir reservas. Alterne entre Antes e Depois para ver o que mudou.",
+    "note": "Coisas que qualquer um percebe.",
+    "callouts": [
+      "Nenhum preço em lugar nenhum. Você teria que ligar só para saber quanto custa um quarto.",
+      "As fotos são minúsculas, e nenhuma delas mostra os quartos.",
+      "É poluído e datado, daquele tipo de site em que você não confia muito.",
+      "Nenhuma forma clara de reservar. Sem datas, sem botão que te acompanha."
+    ],
+    "resultKicker": "o resultado",
+    "resultSummary": "Refeito do zero. Preços claros em cada quarto, fotos reais em tamanho grande e uma barra de reserva que acompanha você enquanto navega.",
+    "resultStats": [
+      { "n": "4 dias", "l": "para redesenhar" },
+      { "n": "+42%", "l": "mais reservas online" },
+      { "n": "3×", "l": "mais tempo no site" }
+    ]
+  },
+  "mobile": {
+    "service": "Otimização mobile",
+    "name": "Maré Alta",
+    "kind": "Loja de surf",
+    "lead": "A maioria das pessoas compra pelo celular. Esta loja de surf ficava boa no notebook, mas era difícil de comprar pelo celular. Eu resolvi isso.",
+    "desktopLabel": "No notebook",
+    "badLabel": "No celular, antes",
+    "goodLabel": "No celular, depois",
+    "badNote": "Espremido, cortado, difícil de comprar.",
+    "goodNote": "Limpo, fácil de navegar e finalizar.",
+    "addonKicker": "o adicional",
+    "addon": "Otimização para celular",
+    "addonPrice": "+R$ — valor a combinar",
+    "addonNote": "Somado a qualquer projeto. É onde a maioria dos seus clientes realmente compra.",
+    "stats": [
+      { "n": "72%", "l": "dos visitantes compram pelo celular" },
+      { "n": "+38%", "l": "mais vendas pelo celular" },
+      { "n": "-22%", "l": "menos carrinhos abandonados" }
+    ]
+  },
+  "servKicker": "dois caminhos",
+  "priceLabel": "Cada site é diferente, e o preço também. A maioria fica entre",
+  "priceRange": "R$ 1.500 – R$ 7.000",
+  "priceNote": "O preço depende do tamanho e da complexidade do site, de quantas mudanças você quer e de quanto trabalho criativo envolve. Sites maiores e mais complexos costumam levar até uma semana.",
+  "serv1Title": "Reforma & Melhoria",
+  "serv1Body": "Você já tem um site. Eu redesenho para ele funcionar melhor e ficar do jeito que você quer.",
+  "serv1Sub": "O mesmo conteúdo, um site melhor.",
+  "serv2Title": "Criação",
+  "serv2Body": "Ainda não tem site? Eu crio e desenvolvo um do zero.",
+  "serv2Sub": "Do primeiro rascunho ao site pronto.",
+  "procKicker": "como eu trabalho",
+  "procTitle": "Cinco passos simples.",
+  "steps": [
+    { "t": "Ouvir", "d": "Conversamos sobre o seu negócio, os seus clientes e o que o site precisa fazer." },
+    { "t": "Esboçar", "d": "Planejo o layout no papel antes de desenhar qualquer coisa." },
+    { "t": "Construir", "d": "Desenho e desenvolvo o site à mão. Sem templates." },
+    { "t": "Lançar", "d": "Seu site vai ao ar, rápido e funcionando bem." },
+    { "t": "Manter", "d": "Depois do lançamento, mantenho o site atualizado e funcionando bem, e mudo conforme você cresce." }
+  ],
+  "contactKicker": "vamos criar algo",
+  "contactTitle": "Vamos criar o site perfeito para você e seus clientes, juntos.",
+  "contactSub": "Me conta sobre ele. Eu respondo todas as mensagens.",
+  "fName": "Seu nome",
+  "fBiz": "Seu lugar",
+  "fMsg": "Me conte sobre o seu lugar",
+  "fSend": "Enviar",
+  "goOn": "vai lá",
+  "thanks": "Obrigada. Logo entro em contato.",
+  "emailLabel": "E-mail",
+  "waLabel": "WhatsApp",
+  "footTag": "Feito à mão."
+}

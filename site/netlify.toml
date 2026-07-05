@@ -1,0 +1,6 @@
+# Netlify config. This site is plain static files — no build step.
+# If you connect the whole repo, set publish to "site". If you drag the
+# `site/` folder in directly, Netlify ignores this and serves it as the root.
+[build]
+  publish = "."
+  command = ""

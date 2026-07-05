@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Sasha — Portfolio
+   Global styles. Everything else in the page uses inline styles (carried over
+   verbatim from the original design for pixel-parity); this file holds only the
+   rules that cannot be inlined: keyframes, media-query overrides, helper
+   classes, and the reduced-motion fallback.
+   ========================================================================== */
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ margin:0; background:#F4EEE2; }
+::selection{ background:#FFB22C; color:#1A1815; }
+a{ color:inherit; }
+input::placeholder, textarea::placeholder{ color:#1A181599; }
+
+/* Toggle panels (Live/Sketch, Before/After) are all present in the DOM and
+   shown/hidden by main.js. Inline display styles would beat the [hidden]
+   attribute, so force it here. */
+[hidden]{ display:none !important; }
+
+/* --- Keyframes --- */
+@keyframes floatcue{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(9px); } }
+@keyframes mn_marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@keyframes mn_glow{ 0%,100%{ box-shadow:0 0 0 0 rgba(124,58,237,.55), 0 0 16px rgba(124,58,237,.45); } 50%{ box-shadow:0 0 0 7px rgba(124,58,237,0), 0 0 30px rgba(124,58,237,.8); } }
+@keyframes mn_flicker{ 0%,19%,21%,100%{ opacity:1; } 20%{ opacity:.55; } 63%{ opacity:1; } 65%{ opacity:.7; } }
+@keyframes kenburns{ 0%{ background-size:116%; background-position:48% 52%; } 100%{ background-size:132%; background-position:52% 46%; } }
+
+/* --- Helper classes --- */
+.mn-marquee-track{ display:inline-flex; white-space:nowrap; animation:mn_marquee 18s linear infinite; }
+.mn-glow-btn{ animation:mn_glow 2.4s ease-in-out infinite; }
+.mn-flicker{ animation:mn_flicker 4s linear infinite; }
+[data-kenburns]{ animation:kenburns 24s ease-in-out infinite alternate; }
+
+/* --- Reduced motion: full fallback (carried over from the original design) --- */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  [data-kenburns]{ animation:none !important; }
+  .mn-marquee-track,.mn-glow-btn,.mn-flicker{ animation:none !important; }
+}
+
+/* --- Responsive overrides --- */
+@media (min-width:881px){ [data-navlink]{ display:inline !important; } }
+@media (max-width:880px){
+  [data-herogrid]{ grid-template-columns:1fr !important; }
+  [data-servgrid]{ grid-template-columns:1fr !important; }
+  [data-casegrid]{ grid-template-columns:1fr !important; }
+}
+@media (max-width:1024px){
+  [data-boardgrid]{ grid-template-columns:1fr !important; }
+  [data-edgepin]{ display:none !important; }
+  [data-strings]{ display:none !important; }
+  [data-notescol]{ display:grid !important; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; height:auto !important; }
+  [data-note]{ position:static !important; transform:none !important; }
+}
+@media (max-width:560px){ [data-notescol]{ grid-template-columns:1fr !important; } }
+@media (max-width:600px){
+  #contact input, #contact textarea{ font-size:16px !important; }
+  [data-scrollcue]{ font-size:15px !important; padding:8px 16px !important; }
+  [data-peek] span{ font-size:16px !important; }
+  #about p, #services p, #process p, #contact p{ font-size:17px !important; line-height:1.6 !important; }
+  #process h4{ line-height:1.05 !important; }
+}
+[data-mobilegrid]{ display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(28px,4vw,56px); align-items:center; }
+[data-mobilegrid] > div{ min-width:0; }
+[data-phonepair]{ max-width:100%; }
+@media (max-width:1024px){ [data-mobilegrid]{ grid-template-columns:1fr; gap:36px; } }
+@media (max-width:460px){ [data-phonepair]{ gap:10px !important; padding:20px 6px !important; } }
+@media (max-width:380px){ [data-phonepair]{ transform:scale(.86); transform-origin:top center; } }
+@media (max-width:560px){ [data-herogrid]{ text-align:left; } }

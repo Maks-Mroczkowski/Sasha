@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sasha — Designer de Sites</title>
+<meta name="description" content="Sasha builds memorable, handcrafted websites for hotels, restaurants, bars and other businesses. Bilingual EN / PT-BR.">
+<meta property="og:title" content="Sasha — Website Designer">
+<meta property="og:description" content="Memorable, handcrafted websites for hotels, restaurants and bars.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F4EEE2">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&amp;family=Permanent+Marker&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Marker-texture SVG filters used by the hand-drawn ink strokes -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true"><defs>
+  <filter id="marker" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.018 0.03" numOctaves="2" seed="7" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter>
+  <filter id="marker2" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.03 0.05" numOctaves="2" seed="3" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"></feDisplacementMap></filter>
+</defs></svg>
+
+<!-- Cursor ink-trail layer (desktop, fine pointer only) -->
+<div id="trail" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden"></div>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px clamp(18px,4vw,52px);background:rgba(244,238,226,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #1a18150f">
+  <a href="#top" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:26px;color:#1A1815;text-decoration:none;letter-spacing:-.5px">Sasha</a>
+  <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,30px)">
+    <a href="#work" data-navlink data-i18n="nav.work" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px;color:#1A1815;text-decoration:none;opacity:.78;display:none">Trabalhos</a>
+    <a href="#services" data-navlink data-i18n="nav.services" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px;color:#1A1815;text-decoration:none;opacity:.78;display:none">Serviços &amp; Preços</a>
+    <a href="#process" data-navlink data-i18n="nav.process" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px;color:#1A1815;text-decoration:none;opacity:.78;display:none">Processo</a>
+    <div style="display:flex;align-items:center;gap:8px;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px">
+      <button type="button" data-lang="en" aria-label="Switch to English" style="position:relative;background:none;border:none;cursor:pointer;padding:4px 3px;color:#1A1815;font:inherit;opacity:1">EN<svg data-langcircle viewBox="0 0 70 42" preserveAspectRatio="none" hidden style="position:absolute;left:-8px;top:-7px;width:calc(100% + 16px);height:calc(100% + 14px);overflow:visible;pointer-events:none"><path d="M 35 4 C 57 3, 67 13, 66 22 C 65 33, 47 39, 30 38 C 13 37, 4 29, 5 20 C 6 11, 20 5, 39 5" fill="none" stroke="#FF4A26" stroke-width="2.3" stroke-linecap="round" style="filter:url(#marker2)"></path></svg></button>
+      <span style="opacity:.32">/</span>
+      <button type="button" data-lang="pt" aria-label="Mudar para Português" style="position:relative;background:none;border:none;cursor:pointer;padding:4px 3px;color:#1A1815;font:inherit">PT<svg data-langcircle viewBox="0 0 70 42" preserveAspectRatio="none" style="position:absolute;left:-8px;top:-7px;width:calc(100% + 16px);height:calc(100% + 14px);overflow:visible;pointer-events:none"><path d="M 35 4 C 57 3, 67 13, 66 22 C 65 33, 47 39, 30 38 C 13 37, 4 29, 5 20 C 6 11, 20 5, 39 5" fill="none" stroke="#FF4A26" stroke-width="2.3" stroke-linecap="round" style="filter:url(#marker2)"></path></svg></button>
+    </div>
+    <a href="#contact" data-i18n="nav.cta" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;color:#F4EEE2;background:#1A1815;text-decoration:none;padding:9px 18px;border-radius:30px;white-space:nowrap">Vamos conversar</a>
+  </div>
+</nav>
+
+<div id="top" style="position:relative;background:#F4EEE2;overflow-x:hidden;color:#1A1815">
+
+  <!-- ===== HERO ===== -->
+  <section style="position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:120px clamp(20px,5vw,72px) 60px;max-width:1280px;margin:0 auto">
+    <div data-herogrid style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(28px,5vw,72px);align-items:center;width:100%">
+      <div>
+        <p data-reveal style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#FF4A26;margin:0 0 22px">Sasha · <span data-i18n="role">Designer de Sites</span></p>
+        <h1 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(42px,7.2vw,104px);line-height:0.99;letter-spacing:-.02em;margin:0;text-wrap:balance">
+          <span data-reveal data-i18n="headlines.1.pre" style="opacity:0;transform:translateY(26px);display:inline">Faço sites que as pessoas realmente </span><span data-reveal style="opacity:0;transform:translateY(26px);position:relative;display:inline-block;white-space:nowrap;padding:0 .08em"><span data-i18n="headlines.1.emph">lembram</span><svg viewBox="0 0 320 110" preserveAspectRatio="none" data-ink style="position:absolute;left:-6%;top:-14%;width:112%;height:128%;overflow:visible;pointer-events:none"><path d="M 160 10 C 250 8, 308 26, 305 54 C 302 84, 220 100, 130 98 C 44 96, 10 74, 14 48 C 18 22, 92 8, 178 10" fill="none" stroke="#FF4A26" stroke-width="3.4" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span><span data-reveal data-i18n="headlines.1.post" style="opacity:0;transform:translateY(26px);display:inline">.</span>
+        </h1>
+        <p data-reveal data-i18n="heroSub" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:400;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#1A1815cc;max-width:30ch;margin:26px 0 36px">Sites para hotéis, restaurantes e outros negócios.</p>
+        <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <a href="#work" data-i18n="heroCta" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:16px;color:#F4EEE2;background:#FF4A26;text-decoration:none;padding:14px 26px;border-radius:32px">Ver os trabalhos</a>
+          <a href="#about" data-i18n="heroCta2" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:16px;color:#1A1815;text-decoration:none;opacity:.7">Me conheça antes</a>
+        </div>
+      </div>
+
+      <div data-reveal style="opacity:0;transform:translateY(26px);position:relative;justify-self:center">
+        <div style="position:relative;width:min(360px,72vw);transform:rotate(-1.6deg)">
+          <div style="position:relative;aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:#EBE3D4;box-shadow:0 22px 50px -22px #1a181555">
+            <img src="assets/img/maks-final.jpg" alt="Sasha, freelance website creator, smiling outdoors" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block">
+          </div>
+          <svg viewBox="0 0 400 540" preserveAspectRatio="none" data-ink style="position:absolute;left:-3.5%;top:-3%;width:107%;height:106%;overflow:visible;pointer-events:none"><path d="M 22 16 C 120 8, 280 10, 372 14 C 388 30, 384 220, 386 410 C 387 500, 380 520, 372 526 C 260 532, 120 530, 26 524 C 14 510, 16 300, 14 110 C 13 44, 14 26, 22 16" fill="none" stroke="#1A1815" stroke-width="3" stroke-linecap="round" style="filter:url(#marker)"></path></svg>
+          <div style="position:absolute;top:-46px;right:-26px;transform:rotate(7deg)">
+            <span style="font-family:'Permanent Marker',cursive;font-size:21px;color:#1D4ED8"><span data-i18n="meNote">sou eu</span> 👋</span>
+            <svg viewBox="0 0 90 80" data-ink style="position:absolute;left:-58px;top:18px;width:64px;height:58px;overflow:visible;pointer-events:none"><path d="M 78 6 C 50 10, 20 24, 10 60" fill="none" stroke="#1D4ED8" stroke-width="2.6" stroke-linecap="round" style="filter:url(#marker)"></path><path d="M 10 60 L 22 50 M 10 60 L 16 44" fill="none" stroke="#1D4ED8" stroke-width="2.6" stroke-linecap="round" style="filter:url(#marker)"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px;color:#1A1815">
+      <span style="font-family:'Permanent Marker',cursive;font-size:15px;opacity:.7"><span data-i18n="scrollCue">a melhor parte</span> ↓</span>
+      <span style="animation:floatcue 1.8s ease-in-out infinite;font-size:18px;opacity:.6">↓</span>
+    </a>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" style="position:relative;z-index:1;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px);max-width:980px;margin:0 auto">
+    <p data-reveal data-i18n="aboutKicker" style="opacity:0;transform:translateY(26px);font-family:'Permanent Marker',cursive;font-size:18px;color:#FF4A26;margin:0 0 28px;transform:rotate(-1.5deg)">um pouco sobre mim</p>
+    <p data-reveal style="opacity: 0; transform: translateY(26px); font-family: 'General Sans','Inter',sans-serif; font-weight: 500; font-size: clamp(23px,3.1vw,38px); line-height: 1.5; letter-spacing: -.01em; margin: 0; text-wrap: pretty"><span data-i18n="about.lead">Sou Sasha. Faço sites para hotéis, restaurantes e bares: </span><span style="position:relative;white-space:nowrap;font-weight:600"><span data-i18n="about.w1">com arte</span><svg viewBox="0 0 200 26" preserveAspectRatio="none" data-ink style="position:absolute;left:-2%;bottom:-0.32em;width:104%;height:0.42em;overflow:visible;pointer-events:none"><path d="M5 14 C 55 6, 130 20, 196 10" fill="none" stroke="#FFB22C" stroke-width="5" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span><span data-i18n="about.mid1"> na aparência, </span><span style="position:relative;white-space:nowrap;font-weight:600"><span data-i18n="about.w2">intencionais</span><svg viewBox="0 0 220 26" preserveAspectRatio="none" data-ink style="position:absolute;left:-2%;bottom:-0.32em;width:104%;height:0.42em;overflow:visible;pointer-events:none"><path d="M5 12 C 60 20, 150 5, 216 14" fill="none" stroke="#1D4ED8" stroke-width="4.5" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span><span data-i18n="about.mid2"> em cada detalhe e </span><span style="position:relative;white-space:nowrap;font-weight:600"><span data-i18n="about.w3">de qualidade</span><svg viewBox="0 0 200 26" preserveAspectRatio="none" data-ink style="position:absolute;left:-2%;bottom:-0.32em;width:104%;height:0.42em;overflow:visible;pointer-events:none"><path d="M5 13 C 50 7, 135 19, 196 11" fill="none" stroke="#FF4A26" stroke-width="4.8" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span><span data-i18n="about.tail"> do primeiro ao último clique. Primeiro conheço o seu lugar, depois crio um site com a cara dele. Sem templates.</span></p>
+    <p data-reveal data-i18n="about.p2" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:#1A1815a6;margin:clamp(22px,3vw,32px) 0 0;max-width:62ch">Estudei engenharia na Universidade de Cambridge e trago essa mesma estrutura para cada site. Trabalho principalmente com hotéis, restaurantes e bares, mas também já criei sites para empresas de tecnologia, clubes de luta e vários outros negócios, pequenos e grandes. A maioria das empresas com quem trabalhei fica em Londres. Seja qual for o seu, crio o site em torno do que ele precisa.</p>
+  </section>
+
+  <!-- ===== TRANSFORMATION ===== -->
+  <section id="work" style="position:relative;z-index:1;padding:clamp(40px,7vw,90px) clamp(20px,5vw,72px) clamp(40px,6vw,70px);max-width:1200px;margin:0 auto">
+    <div style="max-width:760px">
+      <p data-reveal data-i18n="transKicker" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26;margin:0 0 18px">a transformação</p>
+      <h2 data-reveal style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(34px,5.4vw,72px);line-height:1.02;letter-spacing:-.02em;margin:0"><span data-i18n="transIntro">Agora vem a parte boa</span> <span style="display:inline-block;transform:rotate(-3deg);color:#FF4A26">→</span></h2>
+      <p data-reveal data-i18n="transBody" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#1A1815b3;margin:22px 0 0;max-width:48ch">Três exemplos: um site criado do zero, um site antigo melhorado e um feito para funcionar bem no celular. Dê uma olhada.</p>
+      <p data-reveal data-i18n="transNote" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:13px;line-height:1.5;color:#1A181580;margin:16px 0 0;max-width:52ch;font-style:italic">Estes exemplos são recriações. O trabalho real dos meus clientes fica privado, a pedido deles.</p>
+    </div>
+  </section>
+
+  <!-- ============ CREATION CASE STUDY — Maresia ============ -->
+  <section style="position:relative;z-index:1;padding:clamp(18px,3vw,36px) clamp(20px,5vw,72px) clamp(56px,8vw,110px);max-width:1240px;margin:0 auto">
+    <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(20px,3vw,34px)">
+      <span style="font-family:'Permanent Marker',cursive;font-size:clamp(26px,3.2vw,44px);color:#1A1815;line-height:1">01</span>
+      <span data-i18n="rest.service" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26">Criação · do zero</span>
+    </div>
+    <div data-casegrid style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(28px,4vw,60px);align-items:center">
+      <div>
+        <h3 data-reveal style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(38px,4.6vw,64px);line-height:.98;letter-spacing:-.02em;margin:0">Maresia</h3>
+        <p data-reveal data-i18n="rest.lead" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#1A1815b3;margin:16px 0 0;max-width:42ch">Um restaurante no litoral brasileiro que não tinha site. Criei um para eles, do primeiro rascunho a um site que traz reservas.</p>
+        <div style="margin-top:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:18px">
+          <div data-reveal data-idx="0" style="opacity:0;transform:translateY(18px);display:flex;gap:15px;align-items:baseline">
+            <span style="font-family:'Permanent Marker',cursive;font-size:17px;color:#FF4A26;flex:none">01</span>
+            <div><h4 data-i18n="rest.story.0.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(19px,1.7vw,25px);margin:0;line-height:1.12">Eles não tinham site.</h4><p data-i18n="rest.story.0.d" style="font-family:'General Sans','Inter',sans-serif;font-size:16px;line-height:1.5;color:#1A1815a6;margin:6px 0 0;max-width:40ch">Um restaurante pequeno no litoral. As reservas chegavam por telefone e DM, e muitas se perdiam.</p></div>
+          </div>
+          <div data-reveal data-idx="1" style="opacity:0;transform:translateY(18px);display:flex;gap:15px;align-items:baseline">
+            <span style="font-family:'Permanent Marker',cursive;font-size:17px;color:#FF4A26;flex:none">02</span>
+            <div><h4 data-i18n="rest.story.1.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(19px,1.7vw,25px);margin:0;line-height:1.12">Criamos juntos.</h4><p data-i18n="rest.story.1.d" style="font-family:'General Sans','Inter',sans-serif;font-size:16px;line-height:1.5;color:#1A1815a6;margin:6px 0 0;max-width:40ch">Fui até lá, conversamos sobre o que precisavam, tiramos fotos dos pratos e o site ficou pronto em três semanas.</p></div>
+          </div>
+          <div data-reveal data-idx="2" style="opacity:0;transform:translateY(18px);display:flex;gap:15px;align-items:baseline">
+            <span style="font-family:'Permanent Marker',cursive;font-size:17px;color:#FF4A26;flex:none">03</span>
+            <div><h4 data-i18n="rest.story.2.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(19px,1.7vw,25px);margin:0;line-height:1.12">Agora traz reservas.</h4><p data-i18n="rest.story.2.d" style="font-family:'General Sans','Inter',sans-serif;font-size:16px;line-height:1.5;color:#1A1815a6;margin:6px 0 0;max-width:40ch">As pessoas reservam online antes de o restaurante abrir, e os fins de semana enchem cedo.</p></div>
+          </div>
+        </div>
+        <div style="margin-top:clamp(26px,3vw,40px);display:flex;gap:clamp(22px,3vw,44px);flex-wrap:wrap;border-top:1px solid #1a18151f;padding-top:24px">
+          <div><div data-i18n="rest.stats.0.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,40px);color:#1A1815;line-height:1">+36</div><div data-i18n="rest.stats.0.l" style="font-family:'General Sans','Inter',sans-serif;font-size:14px;color:#1A1815a0;margin-top:4px;max-width:16ch">reservas online no 1º mês</div></div>
+          <div><div data-i18n="rest.stats.1.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,40px);color:#1A1815;line-height:1">1 sem</div><div data-i18n="rest.stats.1.l" style="font-family:'General Sans','Inter',sans-serif;font-size:14px;color:#1A1815a0;margin-top:4px;max-width:16ch">para criar e publicar</div></div>
+          <div><div data-i18n="rest.stats.2.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,40px);color:#1A1815;line-height:1">100%</div><div data-i18n="rest.stats.2.l" style="font-family:'General Sans','Inter',sans-serif;font-size:14px;color:#1A1815a0;margin-top:4px;max-width:16ch">feito para eles</div></div>
+        </div>
+      </div>
+
+      <div data-reveal style="opacity:0;transform:translateY(26px);position:relative">
+        <div data-peek="rest" style="display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap">
+          <div style="display:inline-flex;background:#e3dac9;border:1.5px solid #1a181524;border-radius:30px;padding:5px;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:15px;color:#1A1815;box-shadow:0 5px 16px -7px #1a181555">
+            <button type="button" data-view-btn="rest" data-view-value="site" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><span data-pill style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span><span data-i18n="rest.vSite">Site no ar</span></button>
+            <button type="button" data-view-btn="rest" data-view-value="sketch" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><span data-pill hidden style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span><span data-i18n="rest.vSketch">O rascunho</span></button>
+          </div>
+          <span data-i18n="rest.tryIt" style="font-family:'Permanent Marker',cursive;font-size:19px;color:#1D4ED8;transform:rotate(-2deg)">ver o rascunho →</span>
+        </div>
+
+        <div style="position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -34px #1a181566;border:1px solid #1a18151a;background:#fff">
+          <div style="height:34px;background:#f1ede4;border-bottom:1px solid #00000010;display:flex;align-items:center;gap:7px;padding:0 14px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840"></span><span style="margin-left:14px;font-family:'General Sans','Inter',sans-serif;font-size:11px;color:#0007;background:#00000008;padding:3px 14px;border-radius:20px">maresia.com.br</span></div>
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(0deg,#fbf7ef,rgba(251,247,239,0));pointer-events:none;z-index:3"></div>
+          <div data-scrollcue style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;background:#1A1815;color:#F4EEE2;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;padding:7px 15px;border-radius:20px;box-shadow:0 6px 16px -6px #1a1815aa;animation:floatcue 1.8s ease-in-out infinite"><span data-i18n="ui.scroll">role para explorar</span> ↕</div>
+          <div data-nudge data-scrollframe style="height:clamp(420px,52vh,560px);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;background:#fbf7ef;-webkit-overflow-scrolling:touch">
+
+            <div data-view-panel="rest" data-view-value="site">
+            <div style="font-family:'Cormorant Garamond',Georgia,serif;color:#23342f">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid #23342f14">
+                <span style="font-weight:600;font-size:20px;letter-spacing:.34em">MARESIA</span>
+                <div style="display:flex;align-items:center;gap:18px;font-family:'General Sans','Inter',sans-serif;font-size:12px;letter-spacing:.06em;color:#23342fbb"><span>Menu</span><span>A Casa</span><span>Contato</span><span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:12px;color:#fff;background:#c4622d;padding:8px 16px;border-radius:2px;letter-spacing:.04em">Reservar</span></div>
+              </div>
+              <div data-kenburns style="position:relative;height:270px;background:#1a0f08 center/cover no-repeat;background-color:#2a1550;background-image:url('assets/img/sand-beach-sunset.jpg');display:flex;align-items:flex-end;padding:30px 26px">
+                <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,15,9,0.92) 0%,rgba(26,15,9,0.44) 50%,rgba(26,15,9,0.12) 100%)"></div>
+                <div data-reveal style="opacity:0;transform:translateY(22px);position:relative;color:#fbf7ef;text-shadow:0 1px 14px rgba(0,0,0,0.5)">
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;letter-spacing:.24em;margin-bottom:12px;opacity:.9">PARATY · COSTA VERDE</div>
+                  <div style="font-size:clamp(40px,6vw,64px);font-weight:600;line-height:.95;font-style:italic">Do mar à mesa</div>
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;margin-top:12px;opacity:.92">Frutos do mar na brasa, ao cair da tarde.</div>
+                </div>
+              </div>
+              <div style="padding:34px 26px">
+                <div style="text-align:center;font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:#c4622d;font-family:'General Sans','Inter',sans-serif;font-weight:600">— Da nossa cozinha —</div>
+                <div data-dishgrid style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:22px">
+                  <div style="background:#fff;border:1px solid #23342f12;border-radius:4px;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease" data-hover="transform:translateY(-5px);box-shadow:0 16px 32px -18px #1a181559">
+                    <img src="assets/img/moqueca-frutos-do-mar.jpg" alt="" loading="lazy" style="width:100%;height:104px;object-fit:cover;display:block">
+                    <div style="padding:14px">
+                      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font-weight:600;font-size:19px">Moqueca de Camarão</span><span style="font-weight:600;font-size:16px;color:#c4622d">R$ 128</span></div>
+                      <div style="font-family:'General Sans','Inter',sans-serif;font-size:12px;color:#23342f99;margin-top:6px;line-height:1.45">Leite de coco, dendê, pirão da casa.</div>
+                    </div>
+                  </div>
+                  <div style="background:#fff;border:1px solid #23342f12;border-radius:4px;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease" data-hover="transform:translateY(-5px);box-shadow:0 16px 32px -18px #1a181559">
+                    <img src="assets/img/moqueca-cacao.jpg" alt="" loading="lazy" style="width:100%;height:104px;object-fit:cover;display:block">
+                    <div style="padding:14px">
+                      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font-weight:600;font-size:19px">Peixe na Telha</span><span style="font-weight:600;font-size:16px;color:#c4622d">R$ 96</span></div>
+                      <div style="font-family:'General Sans','Inter',sans-serif;font-size:12px;color:#23342f99;margin-top:6px;line-height:1.45">Pescado do dia, ervas, limão siciliano.</div>
+                    </div>
+                  </div>
+                  <div style="background:#fff;border:1px solid #23342f12;border-radius:4px;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease" data-hover="transform:translateY(-5px);box-shadow:0 16px 32px -18px #1a181559">
+                    <img src="assets/img/seafood-plate.jpg" alt="" loading="lazy" style="width:100%;height:104px;object-fit:cover;display:block">
+                    <div style="padding:14px">
+                      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font-weight:600;font-size:19px">Frutos do Mar</span><span style="font-weight:600;font-size:16px;color:#c4622d">R$ 148</span></div>
+                      <div style="font-family:'General Sans','Inter',sans-serif;font-size:12px;color:#23342f99;margin-top:6px;line-height:1.45">Do dia, na brasa, para dividir.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-expgrid style="display:grid;grid-template-columns:1fr 1fr;align-items:stretch">
+                <img src="assets/img/sand-beach-sunset.jpg" alt="" loading="lazy" style="width:100%;height:100%;min-height:200px;object-fit:cover;display:block">
+                <div style="background:#23342f;color:#f2ede1;padding:34px 28px;display:flex;flex-direction:column;justify-content:center">
+                  <div style="font-size:clamp(26px,3.2vw,34px);font-weight:600;font-style:italic;line-height:1.05">Onde o mar encontra a mesa</div>
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;line-height:1.65;margin-top:16px;color:#f2ede1cc;max-width:36ch">No alto da orla, à luz de velas. Cada prato começa no barco da manhã e termina no seu ao anoitecer.</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px">
+                <img src="assets/img/praia-manguinhos.jpg" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block"><img src="assets/img/orla-bardot.jpg" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block"><img src="assets/img/sand-beach-sunset.jpg" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block"><img src="assets/img/seafood-plate.jpg" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block">
+              </div>
+              <div style="text-align:center;padding:30px 24px 36px;background:#fbf7ef">
+                <div style="font-size:22px;font-weight:600;letter-spacing:.3em">MARESIA</div>
+                <div style="font-family:'General Sans','Inter',sans-serif;font-size:12px;color:#23342f99;margin-top:10px;line-height:1.7">Todos os dias · 17h – 23h30<br>Rua da Praia, 240 · Paraty/RJ</div>
+                <span style="display:inline-block;margin-top:16px;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:12px;color:#fff;background:#c4622d;padding:11px 22px;border-radius:2px;letter-spacing:.04em">Reservar pelo WhatsApp</span>
+              </div>
+            </div>
+            </div>
+
+            <div data-view-panel="rest" data-view-value="sketch" hidden>
+            <div style="padding:22px;font-family:'Permanent Marker',cursive;color:#1A1815">
+              <div style="display:flex;justify-content:space-between;align-items:center;border:2px dashed #1A181555;border-radius:6px;padding:10px 14px"><span style="letter-spacing:.2em">MARESIA</span><span style="font-size:13px;color:#1A181588">menu · reservar</span></div>
+              <div style="margin-top:14px;border:2.5px dashed #1A181566;border-radius:8px;height:150px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><path d="M2 2 L98 98 M98 2 L2 98" stroke="#1A181530" stroke-width=".6" fill="none"/></svg><span style="color:#1A181588;font-size:15px">[ foto do mar ]</span></div>
+              <div style="margin-top:8px;font-family:'General Sans','Inter',sans-serif;font-size:13px;color:#1A181577;font-style:italic">← "aqui o nome bem grande, tipo escrito à mão"</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px"><div style="height:80px;border:2px dashed #1A181555;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1A181577">prato</div><div style="height:80px;border:2px dashed #1A181555;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1A181577">prato</div><div style="height:80px;border:2px dashed #1A181555;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1A181577">prato</div></div>
+              <div style="margin-top:18px;border:2px dashed #1A181555;border-radius:6px;height:60px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#1A181577">horário · endereço · whatsapp</div>
+              <div data-i18n="rest.sketchNote" style="margin-top:16px;color:#1D4ED8;font-size:16px;transform:rotate(-1.5deg)">onde tudo começou →</div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPROVEMENT BEFORE/AFTER — Pousada Vista Azul ============ -->
+  <section style="position:relative;z-index:1;padding:clamp(30px,5vw,60px) clamp(20px,5vw,72px) clamp(60px,9vw,120px);max-width:1240px;margin:0 auto">
+    <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,24px)">
+      <span style="font-family:'Permanent Marker',cursive;font-size:clamp(26px,3.2vw,44px);color:#1A1815;line-height:1">02</span>
+      <span data-i18n="hotel.service" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1D4ED8">Reforma &amp; Melhoria</span>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px">
+      <div style="max-width:40ch">
+        <h3 data-reveal style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(30px,3.8vw,52px);line-height:1;letter-spacing:-.02em;margin:0">Pousada Vista Azul</h3>
+        <p data-reveal data-i18n="hotel.lead" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#1A1815b3;margin:14px 0 0">Um site de hotel antigo, redesenhado. As mesmas fotos e o mesmo conteúdo, mas mais fácil de usar e melhor para conseguir reservas. Alterne entre Antes e Depois para ver o que mudou.</p>
+      </div>
+      <div data-reveal data-peek="hotel" style="opacity:0;transform:translateY(26px);display:flex;flex-direction:column;align-items:flex-end;gap:9px">
+        <span style="font-family:'Permanent Marker',cursive;font-size:16px;color:#1D4ED8;transform:rotate(-1.5deg)"><span data-i18n="ui.tap">toque para trocar</span> ↓</span>
+        <div style="display:inline-flex;background:#e3dac9;border:1.5px solid #1a181524;border-radius:30px;padding:5px;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:15px;color:#1A1815;box-shadow:0 5px 16px -7px #1a181555">
+          <button type="button" data-view-btn="hotel" data-view-value="before" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><span data-pill style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span><span data-i18n="hotel.before">Antes</span></button>
+          <button type="button" data-view-btn="hotel" data-view-value="after" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><span data-pill hidden style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span><span data-i18n="hotel.after">Depois</span></button>
+        </div>
+        <span data-i18n="hotel.note" style="font-family:'General Sans','Inter',sans-serif;font-size:14.5px;color:#1A1815aa;max-width:34ch;text-align:right">Coisas que qualquer um percebe.</span>
+      </div>
+    </div>
+
+    <div data-board style="position:relative">
+      <div data-boardgrid style="display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:clamp(56px,8vw,130px);align-items:stretch">
+        <div data-frame-cell style="position:relative">
+          <div style="position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -34px #1a181566;border:1px solid #1a18151a;background:#fff">
+            <div style="height:34px;background:#f1ede4;border-bottom:1px solid #00000010;display:flex;align-items:center;gap:7px;padding:0 14px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span><span style="width:9px;height:9px;border-radius:50%;background:#00000010"></span><span style="margin-left:14px;font-family:'General Sans','Inter',sans-serif;font-size:11px;color:#0007;background:#00000008;padding:3px 14px;border-radius:20px">vistaazul.com.br</span></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(0deg,#ffffff,rgba(255,255,255,0));pointer-events:none;z-index:3"></div>
+            <div data-scrollcue style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;background:#1A1815;color:#F4EEE2;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;padding:7px 15px;border-radius:20px;box-shadow:0 6px 16px -6px #1a1815aa;animation:floatcue 1.8s ease-in-out infinite"><span data-i18n="ui.scroll">role para explorar</span> ↕</div>
+            <div data-nudge data-scrollframe style="height:clamp(520px,68vh,760px);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;-webkit-overflow-scrolling:touch">
+
+            <div data-view-panel="hotel" data-view-value="before">
+            <div style="background:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;color:#5a5f66">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 22px;border-bottom:1px solid #ececec">
+                <span style="font-weight:700;font-size:16px;color:#37475a;letter-spacing:.01em">Pousada Vista Azul</span>
+                <div style="display:flex;align-items:center;gap:18px;font-size:12.5px;color:#7b818a">Início&nbsp;&nbsp;Quartos&nbsp;&nbsp;Sobre&nbsp;&nbsp;Contato<span style="border:1px solid #9fb2c4;color:#3f6699;padding:6px 14px;border-radius:4px;font-size:12px">Reservar</span></div>
+              </div>
+              <div style="position:relative;height:190px;overflow:hidden;background:#c3ccd4">
+                <img src="assets/img/orla-bardot.jpg" alt="" style="width:100%;height:190px;object-fit:cover;display:block">
+                <div style="position:absolute;inset:0;background:rgba(28,40,54,0.34);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px">
+                  <div style="font-size:24px;font-weight:700;color:#fff;letter-spacing:.01em">Pousada Vista Azul</div>
+                  <div style="font-size:13px;color:#eef1f4;margin-top:7px">Conforto e tranquilidade em Ilhabela</div>
+                  <span style="margin-top:13px;font-size:12.5px;font-weight:600;color:#fff;background:#3f6699;padding:9px 20px;border-radius:4px">Ver quartos</span>
+                </div>
+              </div>
+              <div style="display:flex;text-align:center;color:#7b818a;font-size:11.5px;padding:16px 10px;border-bottom:1px solid #f0f0f0">
+                <div style="flex:1">📶<br>Wi-Fi grátis</div>
+                <div style="flex:1">☕<br>Café da manhã</div>
+                <div style="flex:1">🏊<br>Piscina</div>
+                <div style="flex:1">🅿<br>Estacionamento</div>
+              </div>
+              <div style="padding:24px 22px;text-align:center;max-width:600px;margin:0 auto"><div style="font-size:17px;font-weight:700;color:#37475a;margin-bottom:9px">Sobre a pousada</div><p style="font-size:13px;line-height:1.65;color:#71767e;margin:0">A Pousada Vista Azul oferece conforto e tranquilidade em Armação dos Búzios, a poucos minutos das principais praias. Contamos com uma estrutura completa, quartos bem equipados e um atendimento atencioso para tornar a sua estadia agradável. Entre em contato e faça a sua reserva.</p></div>
+              <div style="background:#f7f8fa;padding:24px 22px"><div style="font-size:17px;font-weight:700;color:#37475a;text-align:center;margin-bottom:16px">Nossos quartos</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:640px;margin:0 auto">
+                  <div style="background:#fff;border:1px solid #e7e9ec;border-radius:6px;overflow:hidden"><img src="assets/img/praia-manguinhos.jpg" alt="" style="width:100%;height:84px;object-fit:cover;display:block"><div style="padding:10px 11px"><div style="font-size:13px;font-weight:600;color:#3a4048">Standard</div><div style="font-size:11px;color:#8a8f97;margin-top:3px;line-height:1.45">Ar-condicionado, TV, frigobar</div><div style="font-size:12px;color:#3f6699;margin-top:7px">Consulte valores</div></div></div>
+                  <div style="background:#fff;border:1px solid #e7e9ec;border-radius:6px;overflow:hidden"><img src="assets/img/sand-beach-sunset.jpg" alt="" style="width:100%;height:84px;object-fit:cover;display:block"><div style="padding:10px 11px"><div style="font-size:13px;font-weight:600;color:#3a4048">Luxo</div><div style="font-size:11px;color:#8a8f97;margin-top:3px;line-height:1.45">Vista para o mar, varanda</div><div style="font-size:12px;color:#3f6699;margin-top:7px">Consulte valores</div></div></div>
+                  <div style="background:#fff;border:1px solid #e7e9ec;border-radius:6px;overflow:hidden"><img src="assets/img/orla-bardot.jpg" alt="" style="width:100%;height:84px;object-fit:cover;display:block"><div style="padding:10px 11px"><div style="font-size:13px;font-weight:600;color:#3a4048">Família</div><div style="font-size:11px;color:#8a8f97;margin-top:3px;line-height:1.45">Dois ambientes, até 4 pessoas</div><div style="font-size:12px;color:#3f6699;margin-top:7px">Consulte valores</div></div></div>
+                </div>
+              </div>
+              <div style="padding:24px 22px"><div style="font-size:17px;font-weight:700;color:#37475a;text-align:center;margin-bottom:14px">Galeria</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;max-width:640px;margin:0 auto">
+                  <img src="assets/img/orla-bardot.jpg" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px"><img src="assets/img/praia-manguinhos.jpg" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px"><img src="assets/img/sand-beach-sunset.jpg" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px"><img src="assets/img/orla-bardot.jpg" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px">
+                </div>
+              </div>
+              <div style="background:#37475a;color:#aeb8c4;text-align:center;padding:16px;font-size:11px;line-height:1.7">Pousada Vista Azul · Rua das Palmeiras, 120 · Ilhabela/SP<br>(22) 2623-0000 · contato@vistaazul.com.br · © 2023</div>
+            </div>
+            </div>
+
+            <div data-view-panel="hotel" data-view-value="after" hidden>
+            <div style="background:#f6f2ea;font-family:'General Sans','Inter',sans-serif;color:#25332b">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid #25332b12">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <span style="display:inline-flex;width:36px;height:36px;background:#1c332b;border-radius:50%;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:#f4ecdc;letter-spacing:.03em;flex:none">VA</span>
+                  <span style="display:flex;flex-direction:column;line-height:1"><span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;letter-spacing:.13em;color:#1c332b;white-space:nowrap">POUSADA VISTA AZUL</span><span style="font-size:8px;letter-spacing:.32em;color:#25332b70;margin-top:5px">ARMAÇÃO DOS BÚZIOS · RJ</span></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:20px">
+                  <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#25332b8c;white-space:nowrap">Quartos</span>
+                  <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#25332b8c;white-space:nowrap">A Pousada</span>
+                  <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#25332b8c;white-space:nowrap">Contato</span>
+                </div>
+              </div>
+              <div style="position:sticky;top:0;z-index:5;background:#fbf8f1f2;backdrop-filter:blur(10px);border-bottom:1px solid #25332b12;display:flex;align-items:center;gap:14px;padding:12px 24px">
+                <div style="display:flex;align-items:stretch;border:1px solid #25332b26;border-radius:8px;background:#fff;overflow:hidden">
+                  <div style="padding:8px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:8px;letter-spacing:.18em;color:#25332b7a">CHECK-IN</span><span style="font-size:13px;font-weight:600;color:#1c332b">12 ago</span></div>
+                  <div style="width:1px;align-self:stretch;background:#25332b16"></div>
+                  <div style="padding:8px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:8px;letter-spacing:.18em;color:#25332b7a">CHECK-OUT</span><span style="font-size:13px;font-weight:600;color:#1c332b">15 ago</span></div>
+                  <div style="width:1px;align-self:stretch;background:#25332b16"></div>
+                  <div style="padding:8px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:8px;letter-spacing:.18em;color:#25332b7a">HÓSPEDES</span><span style="font-size:13px;font-weight:600;color:#1c332b;white-space:nowrap">2 adultos</span></div>
+                </div>
+                <span style="margin-left:auto;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f4ecdc;background:#1c332b;padding:13px 24px;border-radius:6px;white-space:nowrap">Ver disponibilidade</span>
+              </div>
+              <div data-kenburns style="position:relative;height:340px;background:#12242a center/cover no-repeat;background-color:#2a1550;background-image:url('assets/img/buzios-hero.jpg');display:flex;align-items:flex-end;justify-content:flex-start;text-align:left">
+                <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,26,24,0.86) 0%,rgba(10,26,24,0.3) 52%,rgba(10,26,24,0.05) 100%)"></div>
+                <div data-areveal style="opacity:0;transform:translateY(24px);position:relative;color:#f7f2e8;padding:0 34px 30px;text-shadow:0 1px 14px rgba(0,0,0,0.45)"><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.6vw,60px);font-weight:600;font-style:italic;line-height:1">Acorde com o mar</div><div style="font-size:13.5px;margin-top:12px;opacity:.96;max-width:40ch;line-height:1.5">Uma pousada pé na areia na parte mais quieta da Ferradura.</div></div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);text-align:center;padding:34px 30px 6px;max-width:600px;margin:0 auto"><p style="font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2.2vw,25px);line-height:1.5;font-style:italic;color:#3a4a40;margin:0">Sete quartos, uma piscina de borda infinita e o mar a três minutos a pé. Café da manhã da casa, servido de frente para a água.</p></div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);padding:26px 24px 8px">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;font-style:italic;margin-bottom:18px">Nossos quartos</div>
+                <div style="display:flex;flex-direction:column;gap:18px">
+                  <div style="display:grid;grid-template-columns:270px 1fr;background:#fff;border-radius:9px;overflow:hidden;border:1px solid #25332b12;box-shadow:0 20px 44px -32px #1a181566;transition:transform .3s ease, box-shadow .3s ease" data-hover="transform:translateY(-5px);box-shadow:0 26px 50px -30px #1a181577">
+                    <img src="assets/img/hotel-room-1.jpg" alt="Suíte Vista Mar" loading="lazy" style="width:100%;height:100%;min-height:196px;object-fit:cover;display:block">
+                    <div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center">
+                      <div style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;line-height:1">Suíte Vista Mar</div>
+                      <div style="font-size:12.5px;color:#25332b99;margin-top:8px;line-height:1.5">Varanda privativa · cama king · café da manhã incluso</div>
+                      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:16px"><span><span style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#25332b7a">a partir de</span><br><b style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#1c332b;letter-spacing:.01em">R$ 690</b><span style="font-size:11px;color:#25332b7a"> / noite</span></span><span style="font-weight:600;font-size:12px;color:#fff;background:#1c6b5f;padding:9px 20px;border-radius:5px">Reservar</span></div>
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:270px 1fr;background:#fff;border-radius:9px;overflow:hidden;border:1px solid #25332b12;box-shadow:0 20px 44px -32px #1a181566;transition:transform .3s ease, box-shadow .3s ease" data-hover="transform:translateY(-5px);box-shadow:0 26px 50px -30px #1a181577">
+                    <img src="assets/img/hotel-room-2.jpg" alt="Quarto Jardim" loading="lazy" style="width:100%;height:100%;min-height:196px;object-fit:cover;display:block">
+                    <div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center">
+                      <div style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;line-height:1">Quarto Jardim</div>
+                      <div style="font-size:12.5px;color:#25332b99;margin-top:8px;line-height:1.5">Térreo · cama queen · café da manhã incluso</div>
+                      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:16px"><span><span style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#25332b7a">a partir de</span><br><b style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#1c332b;letter-spacing:.01em">R$ 540</b><span style="font-size:11px;color:#25332b7a"> / noite</span></span><span style="font-weight:600;font-size:12px;color:#fff;background:#1c6b5f;padding:9px 20px;border-radius:5px">Reservar</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);padding:26px 24px 6px"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;font-style:italic;margin-bottom:14px">A pousada</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px 18px;font-size:13px;color:#3a4a40">
+                  <span>◦ Piscina de borda infinita</span><span>◦ Café da manhã da casa</span><span>◦ Wi-Fi rápido</span><span>◦ Pé na areia</span><span>◦ Estacionamento</span><span>◦ Recepção 24h</span>
+                </div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);padding:26px 3px 8px"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;font-style:italic;margin:0 21px 14px">Búzios lá fora</div>
+                <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4px">
+                  <img src="assets/img/orla-bardot.jpg" alt="" style="width:100%;height:170px;object-fit:cover;display:block"><img src="assets/img/sand-beach-sunset.jpg" alt="" style="width:100%;height:170px;object-fit:cover;display:block"><img src="assets/img/praia-manguinhos.jpg" alt="" style="width:100%;height:170px;object-fit:cover;display:block">
+                </div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);text-align:center;padding:34px 30px;max-width:620px;margin:0 auto"><p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.4vw,27px);font-style:italic;line-height:1.45;color:#25332b;margin:0">“O melhor lugar em que já ficamos em Búzios. A vista da piscina ao amanhecer é surreal.”</p><div style="font-size:12px;color:#25332b99;margin-top:12px;letter-spacing:.03em">— Marina L. · ★★★★★ no Google</div></div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);background:#1c332b;color:#eef2ea;text-align:center;padding:34px 24px"><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,32px);font-weight:600;font-style:italic">Reserve direto e pague menos</div><span style="display:inline-block;margin-top:16px;font-weight:600;font-size:13px;color:#1c332b;background:#e9c98f;padding:11px 26px;border-radius:5px">Ver disponibilidade</span><div style="font-size:11.5px;color:#eef2eaaa;margin-top:16px;letter-spacing:.03em">Pousada Vista Azul · Armação dos Búzios/RJ · reserva direta, sem taxas de intermediário</div></div>
+            </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+        <div data-notescol style="position:relative">
+          <div data-view-panel="hotel" data-view-value="before">
+            <div data-note data-note-idx="0" style="position:absolute;left:0;right:0;top:3%;transform:rotate(-1.3deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+              <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#FF4A26;color:#fff;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">1</span>
+              <span data-i18n="hotel.callouts.0" style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">Nenhum preço em lugar nenhum. Você teria que ligar só para saber quanto custa um quarto.</span>
+            </div>
+            <div data-note data-note-idx="1" style="position:absolute;left:0;right:0;top:27%;transform:rotate(1deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+              <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#1D4ED8;color:#fff;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">2</span>
+              <span data-i18n="hotel.callouts.1" style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">As fotos são minúsculas, e nenhuma delas mostra os quartos.</span>
+            </div>
+            <div data-note data-note-idx="2" style="position:absolute;left:0;right:0;top:51%;transform:rotate(-0.9deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+              <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#FFB22C;color:#1A1815;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">3</span>
+              <span data-i18n="hotel.callouts.2" style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">É poluído e datado, daquele tipo de site em que você não confia muito.</span>
+            </div>
+            <div data-note data-note-idx="3" style="position:absolute;left:0;right:0;top:75%;transform:rotate(1.2deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+              <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#1A1815;color:#fff;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">4</span>
+              <span data-i18n="hotel.callouts.3" style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">Nenhuma forma clara de reservar. Sem datas, sem botão que te acompanha.</span>
+            </div>
+          </div>
+          <div data-view-panel="hotel" data-view-value="after" hidden>
+            <div style="position:sticky;top:96px;background:#1A1815;color:#F4EEE2;border-radius:16px;padding:26px 26px 28px;box-shadow:0 22px 46px -26px #1a1815aa">
+              <span data-i18n="hotel.resultKicker" style="font-family:'Permanent Marker',cursive;font-size:16px;color:#FFB22C">o resultado</span>
+              <p data-i18n="hotel.resultSummary" style="font-family:'General Sans','Inter',sans-serif;font-size:16px;line-height:1.55;color:#F4EEE2e6;margin:12px 0 0">Refeito do zero. Preços claros em cada quarto, fotos reais em tamanho grande e uma barra de reserva que acompanha você enquanto navega.</p>
+              <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;border-top:1px solid #ffffff1f;padding-top:20px">
+                <div><div data-i18n="hotel.resultStats.0.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,2.4vw,32px);line-height:1;color:#F4EEE2">4 dias</div><div data-i18n="hotel.resultStats.0.l" style="font-family:'General Sans','Inter',sans-serif;font-size:13.5px;color:#F4EEE2a6;margin-top:5px;max-width:16ch">para redesenhar</div></div>
+                <div><div data-i18n="hotel.resultStats.1.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,2.4vw,32px);line-height:1;color:#F4EEE2">+42%</div><div data-i18n="hotel.resultStats.1.l" style="font-family:'General Sans','Inter',sans-serif;font-size:13.5px;color:#F4EEE2a6;margin-top:5px;max-width:16ch">mais reservas online</div></div>
+                <div><div data-i18n="hotel.resultStats.2.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,2.4vw,32px);line-height:1;color:#F4EEE2">3×</div><div data-i18n="hotel.resultStats.2.l" style="font-family:'General Sans','Inter',sans-serif;font-size:13.5px;color:#F4EEE2a6;margin-top:5px;max-width:16ch">mais tempo no site</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOBILE OPTIMISATION — Maré Alta ============ -->
+  <section id="mobile-work" style="position:relative;z-index:1;padding:clamp(30px,5vw,70px) clamp(20px,5vw,72px) clamp(60px,9vw,120px);max-width:1240px;margin:0 auto">
+    <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,24px)">
+      <span style="font-family:'Permanent Marker',cursive;font-size:clamp(26px,3.2vw,44px);color:#E8321E;line-height:1">03</span>
+      <span data-i18n="mobile.service" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#E8321E">Otimização mobile</span>
+    </div>
+    <div style="max-width:46ch;margin-bottom:clamp(26px,4vw,44px)">
+      <h3 data-reveal style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(30px,3.8vw,52px);line-height:1;letter-spacing:-.02em;margin:0"><span>Maré Alta</span> <span data-i18n="mobile.kind" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#E8321E;vertical-align:middle;margin-left:6px">Loja de surf</span></h3>
+      <p data-reveal data-i18n="mobile.lead" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#1A1815b3;margin:14px 0 0">A maioria das pessoas compra pelo celular. Esta loja de surf ficava boa no notebook, mas era difícil de comprar pelo celular. Eu resolvi isso.</p>
+    </div>
+
+    <div data-mobilegrid>
+      <div>
+        <div>
+          <div data-i18n="mobile.desktopLabel" style="text-align:center;font-family:'Permanent Marker',cursive;font-size:19px;color:#6b7075;margin-bottom:13px">No notebook</div>
+          <div style="border-radius:12px;overflow:hidden;box-shadow:0 30px 66px -34px #00000055;border:1px solid #00000018;background:#f4f4f4">
+            <div style="height:32px;background:#e2e2e2;border-bottom:1px solid #00000010;display:flex;align-items:center;gap:7px;padding:0 13px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840"></span><span style="margin-left:14px;font-size:11px;color:#00000099;background:#00000010;padding:3px 14px;border-radius:20px">marealta.com.br</span></div>
+            <div style="height:430px;overflow-y:auto;overflow-x:hidden;background:#f4f4f4;color:#111;font-family:'General Sans','Inter',sans-serif">
+              <div style="background:#111;display:flex;align-items:center;justify-content:space-between;padding:13px 24px"><span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.14em;color:#fff;line-height:1">MARÉ ALTA</span><div style="display:flex;gap:20px;font-size:11px;color:#ffffffcc;align-items:center;text-transform:uppercase;letter-spacing:.1em;font-weight:500">Homem<span>Mulher</span><span>Wetsuits</span><span style="color:#E8321E;font-weight:700">Sale</span><span style="position:relative;display:inline-flex"><span style="width:18px;height:16px;border:2px solid #fff;border-radius:0 0 4px 4px;position:relative;display:inline-block"><span style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:8px;border:2px solid #fff;border-bottom:none;border-radius:6px 6px 0 0"></span></span><span style="position:absolute;top:-7px;right:-8px;background:#E8321E;color:#fff;font-size:9px;font-weight:700;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px">3</span></span></div></div>
+              <div style="position:relative;height:238px;overflow:hidden;background:#0b2530">
+                <img src="assets/img/big-wave.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block">
+                <div style="position:absolute;inset:0;background:linear-gradient(90deg,#000000cc,#00000033 55%,transparent)"></div>
+                <div style="position:absolute;left:30px;top:50%;transform:translateY(-50%)">
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#E8321E;font-weight:700;margin-bottom:8px">Nova coleção</div>
+                  <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:.86;letter-spacing:.02em;color:#fff">FEITO PARA<br>O MAR</div>
+                  <span style="display:inline-block;margin-top:16px;background:#E8321E;color:#fff;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px 26px">Comprar agora</span>
+                </div>
+              </div>
+              <div style="background:#111;color:#fff;text-align:center;font-family:'General Sans','Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:9px">Frete grátis acima de R$ 300 · Troca fácil em 30 dias</div>
+              <div style="padding:20px 24px 10px;display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.03em;color:#111">MAIS VENDIDOS</div><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#00000088;font-weight:600">Ver tudo</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:4px 24px 22px">
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="assets/img/wetsuit.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Wetsuits</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Flashbomb 3/2 Wetsuit</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 1.290</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="assets/img/boardshorts.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Homem</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Boardshort Mirage 19″</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 279</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="assets/img/t-shirt.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Homem</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Camiseta Icons Tee</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 149</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="assets/img/g-shock.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Acessórios</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Relógio Search GPS</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 1.890</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="assets/img/ray-ban-sunglasses.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Acessórios</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Óculos The Search</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 349</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="assets/img/sweatshirt.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Mulher</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Moletom Surf Hoodie</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 399</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+              </div>
+              <div style="background:#111;color:#cfcfcf;text-align:center;padding:18px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em">MARÉ ALTA SURF CO. — FLORIANÓPOLIS, SC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-phonepair style="display:flex;gap:18px;justify-content:center;background:radial-gradient(120% 90% at 50% 15%,#00000012,transparent 62%);border-radius:24px;padding:26px 14px">
+      <div style="flex:none;width:200px">
+        <div data-i18n="mobile.badLabel" style="text-align:center;font-family:'Permanent Marker',cursive;font-size:19px;color:#6b7075;margin-bottom:13px">No celular, antes</div>
+        <div style="position:relative;border-radius:32px;background:#0b0b0b;padding:7px;box-shadow:0 26px 54px -22px #00000066">
+          <div style="position:absolute;top:15px;left:50%;transform:translateX(-50%);width:58px;height:15px;border-radius:10px;background:#000;z-index:6"></div>
+          <div style="border-radius:26px;overflow:hidden;height:432px;background:#f4f4f4;position:relative">
+            <div style="height:100%;overflow-y:auto;overflow-x:hidden;position:relative;background:#f4f4f4;color:#111;font-family:'Helvetica Neue',Arial,sans-serif">
+              <div style="background:#111;display:flex;align-items:center;gap:9px;white-space:nowrap;padding:9px 10px;font-size:11px;color:#fffc;width:400px"><b style="color:#fff;font-size:12px">MARÉ ALTA</b><span>Homem</span><span>Mulher</span><span>Wetsuits</span><span>Acessórios</span><span>Sale</span><span>Conta</span><span>Sacola (3)</span></div>
+              <div style="position:relative;height:180px;overflow:hidden;background:#0b2530"><img src="assets/img/wave.jpg" alt="" loading="eager" style="width:165%;height:180px;max-width:none;object-fit:cover;display:block"><div style="position:absolute;left:8px;top:40px;font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:.9;color:#fff;text-shadow:0 2px 8px #000;width:250px">NOVA COLEÇÃO FEITA PARA O MAR</div><span style="position:absolute;left:8px;top:150px;background:#E8321E;color:#fff;font-size:12px;font-weight:700;padding:7px 14px;white-space:nowrap">COMPRAR A COLEÇÃO COMPLETA</span></div>
+              <div style="display:flex;gap:12px;padding:12px 10px 0;white-space:nowrap;width:520px">
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="assets/img/wetsuit.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Flashbomb 3/2 Wetsuit</b><br><span style="color:#E8321E;font-weight:700">R$ 1.290</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="assets/img/boardshorts.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Boardshort Mirage 19″</b><br><span style="color:#E8321E;font-weight:700">R$ 279</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="assets/img/t-shirt.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Camiseta Icons Tee</b><br><span style="color:#E8321E;font-weight:700">R$ 149</span></div></div>
+              </div>
+              <div style="display:flex;gap:12px;padding:8px 10px 0;white-space:nowrap;width:520px">
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="assets/img/g-shock.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Relógio Search GPS</b><br><span style="color:#E8321E;font-weight:700">R$ 1.890</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="assets/img/ray-ban-sunglasses.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Óculos The Search</b><br><span style="color:#E8321E;font-weight:700">R$ 349</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="assets/img/sweatshirt.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Moletom Surf Hoodie</b><br><span style="color:#E8321E;font-weight:700">R$ 399</span></div></div>
+              </div>
+              <div style="padding:12px 10px;font-size:12px;line-height:1.4;color:#00000099;width:320px">Confira nossa coleção completa de wetsuits, boardshorts, roupas e acessórios. Frete grátis acima de R$ 300 e troca fácil em até 30 dias.</div>
+              <div style="position:absolute;right:0;top:38px;bottom:0;width:6px;background:linear-gradient(90deg,transparent,#00000055)"></div>
+            </div>
+          </div>
+        </div>
+        <div data-i18n="mobile.badNote" style="text-align:center;font-family:'General Sans','Inter',sans-serif;font-size:16px;color:#E8321E;margin-top:13px;line-height:1.4;max-width:200px;font-weight:500;margin-left:auto;margin-right:auto">Espremido, cortado, difícil de comprar.</div>
+      </div>
+      <div style="flex:none;width:200px">
+        <div data-i18n="mobile.goodLabel" style="text-align:center;font-family:'Permanent Marker',cursive;font-size:19px;color:#6b7075;margin-bottom:13px">No celular, depois</div>
+        <div style="position:relative;border-radius:32px;background:#0b0b0b;padding:7px;box-shadow:0 26px 54px -22px #00000066">
+          <div style="position:absolute;top:15px;left:50%;transform:translateX(-50%);width:58px;height:15px;border-radius:10px;background:#000;z-index:6"></div>
+          <div style="border-radius:26px;overflow:hidden;height:432px;background:#f4f4f4;position:relative">
+            <div style="height:100%;display:flex;flex-direction:column;background:#f4f4f4;color:#111;font-family:'General Sans','Inter',sans-serif">
+              <div style="flex:none;background:#111;display:flex;align-items:center;justify-content:space-between;padding:11px 13px"><span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.12em;color:#fff">MARÉ ALTA</span><div style="display:flex;align-items:center;gap:11px"><span style="display:flex;flex-direction:column;gap:2.5px"><span style="width:15px;height:2px;background:#fff"></span><span style="width:15px;height:2px;background:#fff"></span><span style="width:15px;height:2px;background:#fff"></span></span><span style="position:relative;display:inline-flex"><span style="width:18px;height:16px;border:2px solid #fff;border-radius:0 0 4px 4px;position:relative;display:inline-block"><span style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:8px;border:2px solid #fff;border-bottom:none;border-radius:6px 6px 0 0"></span></span><span style="position:absolute;top:-7px;right:-8px;background:#E8321E;color:#fff;font-size:9px;font-weight:700;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px">3</span></span></div></div>
+              <div style="flex:1;overflow-y:auto;overflow-x:hidden">
+                <div style="position:relative;height:150px;overflow:hidden;background:#0b2530">
+                  <img src="assets/img/beach-surf.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block">
+                  <div style="position:absolute;inset:0;background:linear-gradient(0deg,#000000d9,#00000033 60%,transparent)"></div>
+                  <div style="position:absolute;left:13px;right:13px;bottom:12px"><div style="font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:#E8321E;font-weight:700;margin-bottom:4px">Nova coleção</div><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:.86;letter-spacing:.02em;color:#fff">FEITO PARA<br>O MAR</div></div>
+                </div>
+                <div style="padding:11px 12px 0"><span style="display:block;text-align:center;background:#E8321E;color:#fff;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px">Comprar agora</span></div>
+                <div style="background:#111;color:#fff;text-align:center;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:7px;margin:11px 0">Frete grátis acima de R$ 300</div>
+                <div style="padding:2px 12px 4px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.03em;color:#111;margin-bottom:8px">MAIS VENDIDOS</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="assets/img/wetsuit.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Flashbomb 3/2</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 1.290</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="assets/img/boardshorts.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Boardshort Mirage</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 279</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="assets/img/t-shirt.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Camiseta Icons</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 149</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="assets/img/g-shock.jpg" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Relógio Search</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 1.890</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                  </div>
+                </div>
+                <div style="height:8px"></div>
+              </div>
+              <div style="flex:none;background:#fff;border-top:1px solid #00000012;padding:9px 13px;display:flex;align-items:center;gap:10px"><div style="flex:1;line-height:1.2"><div style="font-size:9px;color:#00000088">Sacola · 3 itens</div><div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;font-weight:700;color:#111">R$ 1.718</div></div><span style="background:#111;color:#fff;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:11px 16px">Finalizar</span></div>
+            </div>
+          </div>
+        </div>
+        <div data-i18n="mobile.goodNote" style="text-align:center;font-family:'General Sans','Inter',sans-serif;font-size:16px;color:#111;margin-top:13px;line-height:1.4;max-width:200px;font-weight:500;margin-left:auto;margin-right:auto">Limpo, fácil de navegar e finalizar.</div>
+      </div>
+      </div>
+    </div>
+
+    <div data-reveal style="opacity:0;transform:translateY(26px);margin-top:clamp(30px,4vw,52px);background:#111;border:1px solid #E8321E44;border-radius:18px;padding:clamp(24px,3vw,36px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between">
+      <div style="max-width:34ch">
+        <span data-i18n="mobile.addonKicker" style="font-family:'Permanent Marker',cursive;font-size:16px;color:#ff8a76">o adicional</span>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:8px"><span data-i18n="mobile.addon" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(22px,2.4vw,30px);color:#F4EEE2;line-height:1">Otimização para celular</span><span data-i18n="mobile.addonPrice" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(22px,2.4vw,30px);color:#ff8a76;line-height:1">+R$ — valor a combinar</span></div>
+        <p data-i18n="mobile.addonNote" style="font-family:'General Sans','Inter',sans-serif;font-size:14.5px;line-height:1.5;color:#F4EEE2b3;margin:12px 0 0">Somado a qualquer projeto. É onde a maioria dos seus clientes realmente compra.</p>
+      </div>
+      <div style="display:flex;gap:clamp(20px,2.6vw,40px);flex-wrap:wrap">
+        <div><div data-i18n="mobile.stats.0.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,38px);line-height:1;color:#ff8a76">72%</div><div data-i18n="mobile.stats.0.l" style="font-family:'General Sans','Inter',sans-serif;font-size:13px;color:#F4EEE2a6;margin-top:5px;max-width:15ch">dos visitantes compram pelo celular</div></div>
+        <div><div data-i18n="mobile.stats.1.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,38px);line-height:1;color:#ff8a76">+38%</div><div data-i18n="mobile.stats.1.l" style="font-family:'General Sans','Inter',sans-serif;font-size:13px;color:#F4EEE2a6;margin-top:5px;max-width:15ch">mais vendas pelo celular</div></div>
+        <div><div data-i18n="mobile.stats.2.n" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,38px);line-height:1;color:#ff8a76">-22%</div><div data-i18n="mobile.stats.2.l" style="font-family:'General Sans','Inter',sans-serif;font-size:13px;color:#F4EEE2a6;margin-top:5px;max-width:15ch">menos carrinhos abandonados</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" style="position:relative;z-index:1;background:#EBE3D4;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px)">
+    <div style="max-width:1160px;margin:0 auto">
+      <p data-reveal data-i18n="servKicker" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26;margin:0 0 40px;text-align:center">dois caminhos</p>
+      <div data-servgrid style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)">
+        <div data-reveal style="opacity:0;transform:translateY(26px);background:#F4EEE2;border-radius:18px;padding:clamp(28px,3.5vw,48px);border:1px solid #1d4ed81f;display:flex;flex-direction:column">
+          <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1D4ED8">01</span>
+          <h3 data-i18n="serv1Title" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,3.2vw,42px);line-height:1.05;margin:14px 0 0;color:#1A1815">Reforma &amp; Melhoria</h3>
+          <p data-i18n="serv1Body" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#1A1815cc;margin:18px 0 0">Você já tem um site. Eu redesenho para ele funcionar melhor e ficar do jeito que você quer.</p>
+          <span data-i18n="serv1Sub" style="margin-top:auto;padding-top:26px;font-family:'Permanent Marker',cursive;font-size:18px;color:#1D4ED8">O mesmo conteúdo, um site melhor.</span>
+        </div>
+        <div data-reveal style="opacity:0;transform:translateY(26px);background:#1A1815;border-radius:18px;padding:clamp(28px,3.5vw,48px);display:flex;flex-direction:column;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,#FF4A2655,transparent 70%)"></div>
+          <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#FF4A26">02</span>
+          <h3 data-i18n="serv2Title" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,3.2vw,42px);line-height:1.05;margin:14px 0 0;color:#F4EEE2">Criação</h3>
+          <p data-i18n="serv2Body" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#F4EEE2cc;margin:18px 0 0">Ainda não tem site? Eu crio e desenvolvo um do zero.</p>
+          <span data-i18n="serv2Sub" style="margin-top:auto;padding-top:26px;font-family:'Permanent Marker',cursive;font-size:18px;color:#FFB22C">Do primeiro rascunho ao site pronto.</span>
+        </div>
+      </div>
+      <div id="prices" data-reveal style="opacity:0;transform:translateY(26px);scroll-margin-top:90px;margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:8px 16px;text-align:center">
+        <span data-i18n="priceLabel" style="font-family:'General Sans','Inter',sans-serif;font-size:15px;letter-spacing:.02em;color:#1A181599">Cada site é diferente, e o preço também. A maioria fica entre</span>
+        <span data-i18n="priceRange" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1;color:#FF4A26">R$ 1.500 – R$ 7.000</span>
+        <span data-i18n="priceNote" style="width:100%;font-family:'General Sans','Inter',sans-serif;font-size:14.5px;color:#1A181599;margin-top:2px">O preço depende do tamanho e da complexidade do site, de quantas mudanças você quer e de quanto trabalho criativo envolve. Sites maiores e mais complexos costumam levar até uma semana.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process" style="position:relative;z-index:1;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px);max-width:980px;margin:0 auto">
+    <p data-reveal data-i18n="procKicker" style="opacity:0;transform:translateY(26px);font-family:'Permanent Marker',cursive;font-size:18px;color:#FF4A26;margin:0 0 14px;transform:rotate(-1.5deg)">como eu trabalho</p>
+    <h2 data-reveal data-i18n="procTitle" style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(30px,4.6vw,60px);line-height:1.02;margin:0 0 clamp(36px,5vw,64px);letter-spacing:-.02em">Cinco passos simples.</h2>
+    <div style="display:flex;flex-direction:column;gap:clamp(22px,3vw,40px)">
+      <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#FF4A26;flex:none;min-width:1.6em">01</span><div><h4 data-i18n="steps.0.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">Ouvir</h4><p data-i18n="steps.0.d" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">Conversamos sobre o seu negócio, os seus clientes e o que o site precisa fazer.</p></div></div>
+      <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#1D4ED8;flex:none;min-width:1.6em">02</span><div><h4 data-i18n="steps.1.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">Esboçar</h4><p data-i18n="steps.1.d" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">Planejo o layout no papel antes de desenhar qualquer coisa.</p></div></div>
+      <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#FFB22C;flex:none;min-width:1.6em">03</span><div><h4 data-i18n="steps.2.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">Construir</h4><p data-i18n="steps.2.d" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">Desenho e desenvolvo o site à mão. Sem templates.</p></div></div>
+      <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#FF4A26;flex:none;min-width:1.6em">04</span><div><h4 data-i18n="steps.3.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">Lançar</h4><p data-i18n="steps.3.d" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">Seu site vai ao ar, rápido e funcionando bem.</p></div></div>
+      <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#1D4ED8;flex:none;min-width:1.6em">05</span><div><h4 data-i18n="steps.4.t" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">Manter</h4><p data-i18n="steps.4.d" style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">Depois do lançamento, mantenho o site atualizado e funcionando bem, e mudo conforme você cresce.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" style="position:relative;z-index:1;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px)">
+    <div style="max-width:880px;margin:0 auto;text-align:center">
+      <p data-reveal data-i18n="contactKicker" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26;margin:0 0 20px">vamos criar algo</p>
+      <h2 data-reveal data-i18n="contactTitle" style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(34px,5.6vw,76px);line-height:1.0;letter-spacing:-.02em;margin:0;text-wrap:balance">Vamos criar o site perfeito para você e seus clientes, juntos.</h2>
+      <p data-reveal data-i18n="contactSub" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.5vw,21px);color:#1A1815b3;margin:20px 0 0">Me conta sobre ele. Eu respondo todas as mensagens.</p>
+
+      <form id="contact-form" data-reveal style="opacity:0;transform:translateY(26px);margin:clamp(36px,5vw,56px) auto 0;max-width:560px;text-align:left;display:flex;flex-direction:column;gap:22px">
+        <!-- Honeypot: hidden from humans, catches bots. Leave empty. -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+        <input name="name" type="text" required data-i18n-ph="fName" placeholder="Seu nome" style="background:transparent;border:none;border-bottom:2px solid #1a181533;padding:12px 2px;font-family:'General Sans','Inter',sans-serif;font-size:18px;color:#1A1815;outline:none" data-focus="border-bottom-color:#FF4A26">
+        <input name="biz" type="text" data-i18n-ph="fBiz" placeholder="Seu lugar" style="background:transparent;border:none;border-bottom:2px solid #1a181533;padding:12px 2px;font-family:'General Sans','Inter',sans-serif;font-size:18px;color:#1A1815;outline:none" data-focus="border-bottom-color:#FF4A26">
+        <textarea name="msg" rows="3" data-i18n-ph="fMsg" placeholder="Me conte sobre o seu lugar" style="background:transparent;border:none;border-bottom:2px solid #1a181533;padding:12px 2px;font-family:'General Sans','Inter',sans-serif;font-size:18px;color:#1A1815;outline:none;resize:vertical" data-focus="border-bottom-color:#FF4A26"></textarea>
+        <div style="position:relative;align-self:flex-start;margin-top:6px">
+          <button type="submit" data-i18n="fSend" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:17px;color:#F4EEE2;background:#FF4A26;border:none;cursor:pointer;padding:15px 34px;border-radius:34px">Enviar</button>
+          <span style="position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%) rotate(-4deg);white-space:nowrap;font-family:'Permanent Marker',cursive;font-size:17px;color:#1D4ED8">← <span data-i18n="goOn">vai lá</span></span>
+        </div>
+        <p data-thanks data-i18n="thanks" style="display:none;font-family:'Permanent Marker',cursive;font-size:18px;color:#1D4ED8;margin:2px 0 0">Obrigada. Logo entro em contato.</p>
+      </form>
+
+      <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:clamp(34px,5vw,50px)">
+        <a href="mailto:mmroczkowski628@gmail.com" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:15px;color:#1A1815;text-decoration:none;border:1.5px solid #1A1815;padding:12px 24px;border-radius:30px">✉ <span data-i18n="emailLabel">E-mail</span></a>
+        <a href="https://wa.me/447563510096" target="_blank" rel="noopener" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:15px;color:#1A1815;text-decoration:none;border:1.5px solid #1A1815;padding:12px 24px;border-radius:30px">◉ <span data-i18n="waLabel">WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="position:relative;z-index:1;background:#1A1815;color:#F4EEE2;padding:clamp(44px,6vw,72px) clamp(20px,5vw,72px)">
+    <div style="max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:28px;letter-spacing:-.5px">Sasha</div>
+        <div data-i18n="footTag" style="font-family:'Permanent Marker',cursive;font-size:16px;color:#FFB22C;margin-top:6px">Feito à mão.</div>
+      </div>
+      <div style="display:flex;gap:22px;align-items:center;font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px">
+        <a href="https://wa.me/447563510096" target="_blank" rel="noopener" data-i18n="waLabel" style="color:#F4EEE2cc;text-decoration:none">WhatsApp</a>
+        <a href="mailto:mmroczkowski628@gmail.com" data-i18n="emailLabel" style="color:#F4EEE2cc;text-decoration:none">E-mail</a>
+        <!-- Social slot (none for now). To add e.g. Instagram, drop a link here:
+        <a href="https://instagram.com/YOURHANDLE" target="_blank" rel="noopener" style="color:#F4EEE2cc;text-decoration:none">Instagram</a>
+        -->
+        <div style="display:flex;align-items:center;gap:7px">
+          <button type="button" data-lang="en" aria-label="Switch to English" style="background:none;border:none;cursor:pointer;font:inherit;color:#F4EEE2;font-weight:600;opacity:.95">EN</button>
+          <span style="opacity:.4">/</span>
+          <button type="button" data-lang="pt" aria-label="Mudar para Português" style="background:none;border:none;cursor:pointer;font:inherit;color:#F4EEE2;font-weight:600;opacity:.95">PT</button>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1160px;margin:28px auto 0;border-top:1px solid #ffffff1a;padding-top:18px;font-family:'General Sans','Inter',sans-serif;font-size:14px;color:#F4EEE266">© <span id="year">2026</span> Sasha · <span data-i18n="role">Designer de Sites</span></div>
+  </footer>
+
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

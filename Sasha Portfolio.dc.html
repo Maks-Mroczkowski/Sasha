@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&amp;family=Permanent+Marker&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#F4EEE2; }
+  ::selection{ background:#FFB22C; color:#1A1815; }
+  @keyframes floatcue{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(9px); } }
+  @keyframes mn_marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes mn_glow{ 0%,100%{ box-shadow:0 0 0 0 rgba(124,58,237,.55), 0 0 16px rgba(124,58,237,.45); } 50%{ box-shadow:0 0 0 7px rgba(124,58,237,0), 0 0 30px rgba(124,58,237,.8); } }
+  @keyframes mn_flicker{ 0%,19%,21%,100%{ opacity:1; } 20%{ opacity:.55; } 63%{ opacity:1; } 65%{ opacity:.7; } }
+  .mn-marquee-track{ display:inline-flex; white-space:nowrap; animation:mn_marquee 18s linear infinite; }
+  .mn-glow-btn{ animation:mn_glow 2.4s ease-in-out infinite; }
+  .mn-flicker{ animation:mn_flicker 4s linear infinite; }
+  @keyframes kenburns{ 0%{ background-size:116%; background-position:48% 52%; } 100%{ background-size:132%; background-position:52% 46%; } }
+  [data-kenburns]{ animation:kenburns 24s ease-in-out infinite alternate; }
+  input::placeholder, textarea::placeholder{ color:#1A181599; }
+  a{ color:inherit; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-kenburns]{ animation:none !important; } .mn-marquee-track,.mn-glow-btn,.mn-flicker{ animation:none !important; } }
+  @media (min-width:881px){ [data-navlink]{ display:inline !important; } }
+  @media (max-width:880px){
+    [data-herogrid]{ grid-template-columns:1fr !important; }
+    [data-servgrid]{ grid-template-columns:1fr !important; }
+    [data-casegrid]{ grid-template-columns:1fr !important; }
+  }
+  @media (max-width:1024px){
+    [data-boardgrid]{ grid-template-columns:1fr !important; }
+    [data-edgepin]{ display:none !important; }
+    [data-strings]{ display:none !important; }
+    [data-notescol]{ display:grid !important; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; height:auto !important; }
+    [data-note]{ position:static !important; transform:none !important; }
+  }
+  @media (max-width:560px){ [data-notescol]{ grid-template-columns:1fr !important; } }
+  @media (max-width:600px){
+    #contact input, #contact textarea{ font-size:16px !important; }
+    [data-scrollcue]{ font-size:15px !important; padding:8px 16px !important; }
+    [data-peek] span{ font-size:16px !important; }
+    #about p, #services p, #process p, #contact p{ font-size:17px !important; line-height:1.6 !important; }
+    #process h4{ line-height:1.05 !important; }
+  }
+  [data-mobilegrid]{ display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(28px,4vw,56px); align-items:center; }
+  [data-mobilegrid] > div{ min-width:0; }
+  [data-phonepair]{ max-width:100%; }
+  @media (max-width:1024px){ [data-mobilegrid]{ grid-template-columns:1fr; gap:36px; } }
+  @media (max-width:460px){ [data-phonepair]{ gap:10px !important; padding:20px 6px !important; } }
+  @media (max-width:380px){ [data-phonepair]{ transform:scale(.86); transform-origin:top center; } }
+  @media (max-width:560px){
+    [data-herogrid]{ text-align:left; }
+  }
+</style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true"><defs>
+  <filter id="marker" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.018 0.03" numOctaves="2" seed="7" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter>
+  <filter id="marker2" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.03 0.05" numOctaves="2" seed="3" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"></feDisplacementMap></filter>
+</defs></svg>
+
+<div ref="{{ trailRef }}" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden"></div>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px clamp(18px,4vw,52px);background:rgba(244,238,226,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #1a18150f">
+  <a href="#top" style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:26px;color:#1A1815;text-decoration:none;letter-spacing:-.5px">Sasha</a>
+  <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,30px)">
+    <a href="#work" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px;color:#1A1815;text-decoration:none;opacity:.78;display:none" data-navlink="">{{ t.nav.work }}</a>
+    <a href="#services" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px;color:#1A1815;text-decoration:none;opacity:.78;display:none" data-navlink="">{{ t.nav.services }}</a>
+    <a href="#process" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px;color:#1A1815;text-decoration:none;opacity:.78;display:none" data-navlink="">{{ t.nav.process }}</a>
+    <div style="display:flex;align-items:center;gap:8px;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px">
+      <button onClick="{{ setEN }}" style="position:relative;background:none;border:none;cursor:pointer;padding:4px 3px;color:#1A1815;font:inherit;opacity:1">EN<sc-if value="{{ isEN }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 70 42" preserveAspectRatio="none" style="position:absolute;left:-8px;top:-7px;width:calc(100% + 16px);height:calc(100% + 14px);overflow:visible;pointer-events:none"><path d="M 35 4 C 57 3, 67 13, 66 22 C 65 33, 47 39, 30 38 C 13 37, 4 29, 5 20 C 6 11, 20 5, 39 5" fill="none" stroke="#FF4A26" stroke-width="2.3" stroke-linecap="round" style="filter:url(#marker2)"></path></svg></sc-if></button>
+      <span style="opacity:.32">/</span>
+      <button onClick="{{ setPT }}" style="position:relative;background:none;border:none;cursor:pointer;padding:4px 3px;color:#1A1815;font:inherit">PT<sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 70 42" preserveAspectRatio="none" style="position:absolute;left:-8px;top:-7px;width:calc(100% + 16px);height:calc(100% + 14px);overflow:visible;pointer-events:none"><path d="M 35 4 C 57 3, 67 13, 66 22 C 65 33, 47 39, 30 38 C 13 37, 4 29, 5 20 C 6 11, 20 5, 39 5" fill="none" stroke="#FF4A26" stroke-width="2.3" stroke-linecap="round" style="filter:url(#marker2)"></path></svg></sc-if></button>
+    </div>
+    <a href="#contact" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;color:#F4EEE2;background:#1A1815;text-decoration:none;padding:9px 18px;border-radius:30px;white-space:nowrap">{{ t.nav.cta }}</a>
+  </div>
+</nav>
+
+<div ref="{{ pageRef }}" id="top" style="position:relative;background:#F4EEE2;overflow-x:hidden;color:#1A1815">
+
+  <!-- ===== HERO ===== -->
+  <section style="position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:120px clamp(20px,5vw,72px) 60px;max-width:1280px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(28px,5vw,72px);align-items:center;width:100%" data-herogrid="">
+      <div>
+        <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#FF4A26;margin:0 0 22px">Sasha · {{ t.role }}</p>
+        <h1 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(42px,7.2vw,104px);line-height:0.99;letter-spacing:-.02em;margin:0;text-wrap:balance">
+          <span data-reveal="" style="opacity:0;transform:translateY(26px);display:inline">{{ hpre }}</span><span data-reveal="" style="opacity:0;transform:translateY(26px);position:relative;display:inline-block;white-space:nowrap;padding:0 .08em">{{ hemph }}<svg viewBox="0 0 320 110" preserveAspectRatio="none" data-ink="" style="position:absolute;left:-6%;top:-14%;width:112%;height:128%;overflow:visible;pointer-events:none"><path d="M 160 10 C 250 8, 308 26, 305 54 C 302 84, 220 100, 130 98 C 44 96, 10 74, 14 48 C 18 22, 92 8, 178 10" fill="none" stroke="#FF4A26" stroke-width="3.4" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span><span data-reveal="" style="opacity:0;transform:translateY(26px);display:inline">{{ hpost }}</span>
+        </h1>
+        <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:400;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#1A1815cc;max-width:30ch;margin:26px 0 36px">{{ t.heroSub }}</p>
+        <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <a href="#work" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:16px;color:#F4EEE2;background:#FF4A26;text-decoration:none;padding:14px 26px;border-radius:32px">{{ t.heroCta }}</a>
+          <a href="#about" style="font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:16px;color:#1A1815;text-decoration:none;opacity:.7">{{ t.heroCta2 }}</a>
+        </div>
+      </div>
+
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);position:relative;justify-self:center">
+        <div style="position:relative;width:min(360px,72vw);transform:rotate(-1.6deg)">
+          <div style="position:relative;aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:#EBE3D4;box-shadow:0 22px 50px -22px #1a181555">
+            <img src="uploads/Maks-Final.jpg" alt="Sasha, freelance website creator, smiling outdoors" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block">
+          </div>
+          <svg viewBox="0 0 400 540" preserveAspectRatio="none" data-ink="" style="position:absolute;left:-3.5%;top:-3%;width:107%;height:106%;overflow:visible;pointer-events:none"><path d="M 22 16 C 120 8, 280 10, 372 14 C 388 30, 384 220, 386 410 C 387 500, 380 520, 372 526 C 260 532, 120 530, 26 524 C 14 510, 16 300, 14 110 C 13 44, 14 26, 22 16" fill="none" stroke="#1A1815" stroke-width="3" stroke-linecap="round" style="filter:url(#marker)"></path></svg>
+          <div style="position:absolute;top:-46px;right:-26px;transform:rotate(7deg)">
+            <span style="font-family:'Permanent Marker',cursive;font-size:21px;color:#1D4ED8">{{ t.meNote }} 👋</span>
+            <svg viewBox="0 0 90 80" data-ink="" style="position:absolute;left:-58px;top:18px;width:64px;height:58px;overflow:visible;pointer-events:none"><path d="M 78 6 C 50 10, 20 24, 10 60" fill="none" stroke="#1D4ED8" stroke-width="2.6" stroke-linecap="round" style="filter:url(#marker)"></path><path d="M 10 60 L 22 50 M 10 60 L 16 44" fill="none" stroke="#1D4ED8" stroke-width="2.6" stroke-linecap="round" style="filter:url(#marker)"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px;color:#1A1815">
+      <span style="font-family:'Permanent Marker',cursive;font-size:15px;opacity:.7">{{ t.scrollCue }} ↓</span>
+      <span style="animation:floatcue 1.8s ease-in-out infinite;font-size:18px;opacity:.6">↓</span>
+    </a>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" style="position:relative;z-index:1;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px);max-width:980px;margin:0 auto">
+    <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'Permanent Marker',cursive;font-size:18px;color:#FF4A26;margin:0 0 28px;transform:rotate(-1.5deg)">{{ t.aboutKicker }}</p>
+    <p data-reveal="" style="opacity: 0; transform: translateY(26px); font-family: 'General Sans','Inter',sans-serif; font-weight: 500; font-size: clamp(23px,3.1vw,38px); line-height: 1.5; letter-spacing: -.01em; margin: 0; text-wrap: pretty">{{ about.lead }}<span style="position:relative;white-space:nowrap;font-weight:600">{{ about.w1 }}<svg viewBox="0 0 200 26" preserveAspectRatio="none" data-ink="" style="position:absolute;left:-2%;bottom:-0.32em;width:104%;height:0.42em;overflow:visible;pointer-events:none"><path d="M5 14 C 55 6, 130 20, 196 10" fill="none" stroke="#FFB22C" stroke-width="5" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span>{{ about.mid1 }}<span style="position:relative;white-space:nowrap;font-weight:600">{{ about.w2 }}<svg viewBox="0 0 220 26" preserveAspectRatio="none" data-ink="" style="position:absolute;left:-2%;bottom:-0.32em;width:104%;height:0.42em;overflow:visible;pointer-events:none"><path d="M5 12 C 60 20, 150 5, 216 14" fill="none" stroke="#1D4ED8" stroke-width="4.5" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span>{{ about.mid2 }}<span style="position:relative;white-space:nowrap;font-weight:600">{{ about.w3 }}<svg viewBox="0 0 200 26" preserveAspectRatio="none" data-ink="" style="position:absolute;left:-2%;bottom:-0.32em;width:104%;height:0.42em;overflow:visible;pointer-events:none"><path d="M5 13 C 50 7, 135 19, 196 11" fill="none" stroke="#FF4A26" stroke-width="4.8" stroke-linecap="round" style="filter:url(#marker)"></path></svg></span>{{ about.tail }}</p>
+    <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:#1A1815a6;margin:clamp(22px,3vw,32px) 0 0;max-width:62ch">{{ about.p2 }}</p>
+  </section>
+
+  <!-- ===== TRANSFORMATION ===== -->
+  <section id="work" style="position:relative;z-index:1;padding:clamp(40px,7vw,90px) clamp(20px,5vw,72px) clamp(40px,6vw,70px);max-width:1200px;margin:0 auto">
+    <div style="max-width:760px">
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26;margin:0 0 18px">{{ t.transKicker }}</p>
+      <h2 data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(34px,5.4vw,72px);line-height:1.02;letter-spacing:-.02em;margin:0">{{ t.transIntro }} <span style="display:inline-block;transform:rotate(-3deg);color:#FF4A26">→</span></h2>
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#1A1815b3;margin:22px 0 0;max-width:48ch">{{ t.transBody }}</p>
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:13px;line-height:1.5;color:#1A181580;margin:16px 0 0;max-width:52ch;font-style:italic">{{ t.transNote }}</p>
+    </div>
+  </section>
+
+  <!-- ============ CREATION CASE STUDY — Maresia ============ -->
+  <section style="position:relative;z-index:1;padding:clamp(18px,3vw,36px) clamp(20px,5vw,72px) clamp(56px,8vw,110px);max-width:1240px;margin:0 auto">
+    <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(20px,3vw,34px)">
+      <span style="font-family:'Permanent Marker',cursive;font-size:clamp(26px,3.2vw,44px);color:#1A1815;line-height:1">01</span>
+      <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26">{{ rest.service }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(28px,4vw,60px);align-items:center" data-casegrid>
+      <div>
+        <h3 data-reveal style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(38px,4.6vw,64px);line-height:.98;letter-spacing:-.02em;margin:0">Maresia</h3>
+        <p data-reveal style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#1A1815b3;margin:16px 0 0;max-width:42ch">{{ rest.lead }}</p>
+        <div style="margin-top:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:18px">
+          <sc-for list="{{ rest.story }}" as="s" hint-placeholder-count="3">
+            <div data-reveal data-idx="{{ $index }}" style="opacity:0;transform:translateY(18px);display:flex;gap:15px;align-items:baseline">
+              <span style="font-family:'Permanent Marker',cursive;font-size:17px;color:#FF4A26;flex:none">{{ s.n }}</span>
+              <div><h4 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(19px,1.7vw,25px);margin:0;line-height:1.12">{{ s.t }}</h4><p style="font-family:'General Sans','Inter',sans-serif;font-size:16px;line-height:1.5;color:#1A1815a6;margin:6px 0 0;max-width:40ch">{{ s.d }}</p></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:clamp(26px,3vw,40px);display:flex;gap:clamp(22px,3vw,44px);flex-wrap:wrap;border-top:1px solid #1a18151f;padding-top:24px">
+          <sc-for list="{{ rest.stats }}" as="st" hint-placeholder-count="3">
+            <div><div style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,40px);color:#1A1815;line-height:1">{{ st.n }}</div><div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;color:#1A1815a0;margin-top:4px;max-width:16ch">{{ st.l }}</div></div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div data-reveal style="opacity:0;transform:translateY(26px);position:relative">
+        <div data-peek="rest" style="display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap">
+          <div style="display:inline-flex;background:#e3dac9;border:1.5px solid #1a181524;border-radius:30px;padding:5px;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:15px;color:#1A1815;box-shadow:0 5px 16px -7px #1a181555">
+            <button onClick="{{ setRestSite }}" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><sc-if value="{{ restIsSite }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span></sc-if>{{ rest.vSite }}</button>
+            <button onClick="{{ setRestSketch }}" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><sc-if value="{{ restIsSketch }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span></sc-if>{{ rest.vSketch }}</button>
+          </div>
+          <span style="font-family:'Permanent Marker',cursive;font-size:19px;color:#1D4ED8;transform:rotate(-2deg)">{{ rest.tryIt }}</span>
+        </div>
+
+        <div style="position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -34px #1a181566;border:1px solid #1a18151a;background:#fff">
+          <div style="height:34px;background:#f1ede4;border-bottom:1px solid #00000010;display:flex;align-items:center;gap:7px;padding:0 14px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840"></span><span style="margin-left:14px;font-family:'General Sans','Inter',sans-serif;font-size:11px;color:#0007;background:#00000008;padding:3px 14px;border-radius:20px">maresia.com.br</span></div>
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(0deg,#fbf7ef,rgba(251,247,239,0));pointer-events:none;z-index:3"></div>
+          <div data-scrollcue style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;background:#1A1815;color:#F4EEE2;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;padding:7px 15px;border-radius:20px;box-shadow:0 6px 16px -6px #1a1815aa;animation:floatcue 1.8s ease-in-out infinite">{{ ui.scroll }} ↕</div>
+          <div data-nudge data-scrollframe style="height:clamp(420px,52vh,560px);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;background:#fbf7ef;-webkit-overflow-scrolling:touch">
+
+            <sc-if value="{{ restIsSite }}" hint-placeholder-val="{{ true }}">
+            <div style="font-family:'Cormorant Garamond',Georgia,serif;color:#23342f">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid #23342f14">
+                <span style="font-weight:600;font-size:20px;letter-spacing:.34em">MARESIA</span>
+                <div style="display:flex;align-items:center;gap:18px;font-family:'General Sans','Inter',sans-serif;font-size:12px;letter-spacing:.06em;color:#23342fbb"><sc-for list="{{ site.nav }}" as="n" hint-placeholder-count="3"><span>{{ n }}</span></sc-for><span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:12px;color:#fff;background:#c4622d;padding:8px 16px;border-radius:2px;letter-spacing:.04em">{{ site.reserve }}</span></div>
+              </div>
+              <div data-kenburns style="position:relative;height:270px;background:#1a0f08 center/cover no-repeat;background-color:#2a1550;background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=1200');display:flex;align-items:flex-end;padding:30px 26px">
+                <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,15,9,0.92) 0%,rgba(26,15,9,0.44) 50%,rgba(26,15,9,0.12) 100%)"></div>
+                <div data-reveal style="opacity:0;transform:translateY(22px);position:relative;color:#fbf7ef;text-shadow:0 1px 14px rgba(0,0,0,0.5)">
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;letter-spacing:.24em;margin-bottom:12px;opacity:.9">{{ site.kicker }}</div>
+                  <div style="font-size:clamp(40px,6vw,64px);font-weight:600;line-height:.95;font-style:italic">{{ site.title }}</div>
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;margin-top:12px;opacity:.92">{{ site.sub }}</div>
+                </div>
+              </div>
+              <div style="padding:34px 26px">
+                <div style="text-align:center;font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:#c4622d;font-family:'General Sans','Inter',sans-serif;font-weight:600">— {{ site.dishesTitle }} —</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:22px" data-dishgrid>
+                  <sc-for list="{{ site.dishes }}" as="d" hint-placeholder-count="3">
+                    <div style="background:#fff;border:1px solid #23342f12;border-radius:4px;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 16px 32px -18px #1a181559">
+                      <img src="{{ d.img }}" alt="" loading="lazy" style="width:100%;height:104px;object-fit:cover;display:block">
+                      <div style="padding:14px">
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font-weight:600;font-size:19px">{{ d.n }}</span><span style="font-weight:600;font-size:16px;color:#c4622d">{{ d.p }}</span></div>
+                        <div style="font-family:'General Sans','Inter',sans-serif;font-size:12px;color:#23342f99;margin-top:6px;line-height:1.45">{{ d.d }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;align-items:stretch" data-expgrid>
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=1000" alt="" loading="lazy" style="width:100%;height:100%;min-height:200px;object-fit:cover;display:block">
+                <div style="background:#23342f;color:#f2ede1;padding:34px 28px;display:flex;flex-direction:column;justify-content:center">
+                  <div style="font-size:clamp(26px,3.2vw,34px);font-weight:600;font-style:italic;line-height:1.05">{{ site.expTitle }}</div>
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;line-height:1.65;margin-top:16px;color:#f2ede1cc;max-width:36ch">{{ site.expBody }}</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Praia%20de%20Manguinhos%20-%20B%C3%BAzios%20RJ.jpg?width=1000" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=1000" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=1000" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Plate%20of%20seafood%2C%20Mozambique.jpg?width=1000" alt="" loading="lazy" style="height:110px;width:100%;object-fit:cover;display:block">
+              </div>
+              <div style="text-align:center;padding:30px 24px 36px;background:#fbf7ef">
+                <div style="font-size:22px;font-weight:600;letter-spacing:.3em">MARESIA</div>
+                <div style="font-family:'General Sans','Inter',sans-serif;font-size:12px;color:#23342f99;margin-top:10px;line-height:1.7">{{ site.hours }}<br>{{ site.addr }}</div>
+                <span style="display:inline-block;margin-top:16px;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:12px;color:#fff;background:#c4622d;padding:11px 22px;border-radius:2px;letter-spacing:.04em">{{ site.footCta }}</span>
+              </div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ restIsSketch }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:22px;font-family:'Permanent Marker',cursive;color:#1A1815">
+              <div style="display:flex;justify-content:space-between;align-items:center;border:2px dashed #1A181555;border-radius:6px;padding:10px 14px"><span style="letter-spacing:.2em">MARESIA</span><span style="font-size:13px;color:#1A181588">menu · reservar</span></div>
+              <div style="margin-top:14px;border:2.5px dashed #1A181566;border-radius:8px;height:150px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><path d="M2 2 L98 98 M98 2 L2 98" stroke="#1A181530" stroke-width=".6" fill="none"/></svg><span style="color:#1A181588;font-size:15px">[ foto do mar ]</span></div>
+              <div style="margin-top:8px;font-family:'General Sans','Inter',sans-serif;font-size:13px;color:#1A181577;font-style:italic">← "aqui o nome bem grande, tipo escrito à mão"</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px"><div style="height:80px;border:2px dashed #1A181555;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1A181577">prato</div><div style="height:80px;border:2px dashed #1A181555;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1A181577">prato</div><div style="height:80px;border:2px dashed #1A181555;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1A181577">prato</div></div>
+              <div style="margin-top:18px;border:2px dashed #1A181555;border-radius:6px;height:60px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#1A181577">horário · endereço · whatsapp</div>
+              <div style="margin-top:16px;color:#1D4ED8;font-size:16px;transform:rotate(-1.5deg)">{{ rest.sketchNote }}</div>
+            </div>
+            </sc-if>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPROVEMENT BEFORE/AFTER — Pousada Vista Azul ============ -->
+  <section style="position:relative;z-index:1;padding:clamp(30px,5vw,60px) clamp(20px,5vw,72px) clamp(60px,9vw,120px);max-width:1240px;margin:0 auto">
+    <div data-reveal style="opacity:0;transform:translateY(26px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,24px)">
+      <span style="font-family:'Permanent Marker',cursive;font-size:clamp(26px,3.2vw,44px);color:#1A1815;line-height:1">02</span>
+      <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1D4ED8">{{ hotel.service }}</span>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px">
+      <div style="max-width:40ch">
+        <h3 data-reveal style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(30px,3.8vw,52px);line-height:1;letter-spacing:-.02em;margin:0">{{ hotel.name }}</h3>
+        <p data-reveal style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#1A1815b3;margin:14px 0 0">{{ hotel.lead }}</p>
+      </div>
+      <div data-reveal data-peek="hotel" style="opacity:0;transform:translateY(26px);display:flex;flex-direction:column;align-items:flex-end;gap:9px">
+        <span style="font-family:'Permanent Marker',cursive;font-size:16px;color:#1D4ED8;transform:rotate(-1.5deg)">{{ ui.tap }} ↓</span>
+        <div style="display:inline-flex;background:#e3dac9;border:1.5px solid #1a181524;border-radius:30px;padding:5px;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:15px;color:#1A1815;box-shadow:0 5px 16px -7px #1a181555">
+          <button onClick="{{ setHotelBefore }}" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><sc-if value="{{ hotelIsBefore }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span></sc-if>{{ hotel.before }}</button>
+          <button onClick="{{ setHotelAfter }}" style="position:relative;z-index:1;border:none;cursor:pointer;background:none;font:inherit;color:#1A1815;padding:11px 24px;border-radius:26px"><sc-if value="{{ hotelIsAfter }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;background:#F4EEE2;border-radius:26px;box-shadow:0 2px 6px -2px #1a181540;z-index:-1"></span></sc-if>{{ hotel.after }}</button>
+        </div>
+        <span style="font-family:'General Sans','Inter',sans-serif;font-size:14.5px;color:#1A1815aa;max-width:34ch;text-align:right">{{ hotel.note }}</span>
+      </div>
+    </div>
+
+    <div data-board style="position:relative">
+      <div data-boardgrid style="display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:clamp(56px,8vw,130px);align-items:stretch">
+        <div data-frame-cell style="position:relative">
+          <div style="position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -34px #1a181566;border:1px solid #1a18151a;background:#fff">
+            <div style="height:34px;background:#f1ede4;border-bottom:1px solid #00000010;display:flex;align-items:center;gap:7px;padding:0 14px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span><span style="width:9px;height:9px;border-radius:50%;background:#00000010"></span><span style="margin-left:14px;font-family:'General Sans','Inter',sans-serif;font-size:11px;color:#0007;background:#00000008;padding:3px 14px;border-radius:20px">vistaazul.com.br</span></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(0deg,#ffffff,rgba(255,255,255,0));pointer-events:none;z-index:3"></div>
+            <div data-scrollcue style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;background:#1A1815;color:#F4EEE2;font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;padding:7px 15px;border-radius:20px;box-shadow:0 6px 16px -6px #1a1815aa;animation:floatcue 1.8s ease-in-out infinite">{{ ui.scroll }} ↕</div>
+            <div data-nudge data-scrollframe style="height:clamp(520px,68vh,760px);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;-webkit-overflow-scrolling:touch">
+
+            <sc-if value="{{ hotelIsBefore }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;color:#5a5f66">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 22px;border-bottom:1px solid #ececec">
+                <span style="font-weight:700;font-size:16px;color:#37475a;letter-spacing:.01em">Pousada Vista Azul</span>
+                <div style="display:flex;align-items:center;gap:18px;font-size:12.5px;color:#7b818a">Início&nbsp;&nbsp;Quartos&nbsp;&nbsp;Sobre&nbsp;&nbsp;Contato<span style="border:1px solid #9fb2c4;color:#3f6699;padding:6px 14px;border-radius:4px;font-size:12px">Reservar</span></div>
+              </div>
+              <div style="position:relative;height:190px;overflow:hidden;background:#c3ccd4">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=640" alt="" style="width:100%;height:190px;object-fit:cover;display:block">
+                <div style="position:absolute;inset:0;background:rgba(28,40,54,0.34);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px">
+                  <div style="font-size:24px;font-weight:700;color:#fff;letter-spacing:.01em">Pousada Vista Azul</div>
+                  <div style="font-size:13px;color:#eef1f4;margin-top:7px">Conforto e tranquilidade em Ilhabela</div>
+                  <span style="margin-top:13px;font-size:12.5px;font-weight:600;color:#fff;background:#3f6699;padding:9px 20px;border-radius:4px">Ver quartos</span>
+                </div>
+              </div>
+              <div style="display:flex;text-align:center;color:#7b818a;font-size:11.5px;padding:16px 10px;border-bottom:1px solid #f0f0f0">
+                <div style="flex:1">📶<br>Wi-Fi grátis</div>
+                <div style="flex:1">☕<br>Café da manhã</div>
+                <div style="flex:1">🏊<br>Piscina</div>
+                <div style="flex:1">🅿<br>Estacionamento</div>
+              </div>
+              <div style="padding:24px 22px;text-align:center;max-width:600px;margin:0 auto"><div style="font-size:17px;font-weight:700;color:#37475a;margin-bottom:9px">Sobre a pousada</div><p style="font-size:13px;line-height:1.65;color:#71767e;margin:0">A Pousada Vista Azul oferece conforto e tranquilidade em Armação dos Búzios, a poucos minutos das principais praias. Contamos com uma estrutura completa, quartos bem equipados e um atendimento atencioso para tornar a sua estadia agradável. Entre em contato e faça a sua reserva.</p></div>
+              <div style="background:#f7f8fa;padding:24px 22px"><div style="font-size:17px;font-weight:700;color:#37475a;text-align:center;margin-bottom:16px">Nossos quartos</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:640px;margin:0 auto">
+                  <div style="background:#fff;border:1px solid #e7e9ec;border-radius:6px;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Praia%20de%20Manguinhos%20-%20B%C3%BAzios%20RJ.jpg?width=300" alt="" style="width:100%;height:84px;object-fit:cover;display:block"><div style="padding:10px 11px"><div style="font-size:13px;font-weight:600;color:#3a4048">Standard</div><div style="font-size:11px;color:#8a8f97;margin-top:3px;line-height:1.45">Ar-condicionado, TV, frigobar</div><div style="font-size:12px;color:#3f6699;margin-top:7px">Consulte valores</div></div></div>
+                  <div style="background:#fff;border:1px solid #e7e9ec;border-radius:6px;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=300" alt="" style="width:100%;height:84px;object-fit:cover;display:block"><div style="padding:10px 11px"><div style="font-size:13px;font-weight:600;color:#3a4048">Luxo</div><div style="font-size:11px;color:#8a8f97;margin-top:3px;line-height:1.45">Vista para o mar, varanda</div><div style="font-size:12px;color:#3f6699;margin-top:7px">Consulte valores</div></div></div>
+                  <div style="background:#fff;border:1px solid #e7e9ec;border-radius:6px;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=300" alt="" style="width:100%;height:84px;object-fit:cover;display:block"><div style="padding:10px 11px"><div style="font-size:13px;font-weight:600;color:#3a4048">Família</div><div style="font-size:11px;color:#8a8f97;margin-top:3px;line-height:1.45">Dois ambientes, até 4 pessoas</div><div style="font-size:12px;color:#3f6699;margin-top:7px">Consulte valores</div></div></div>
+                </div>
+              </div>
+              <div style="padding:24px 22px"><div style="font-size:17px;font-weight:700;color:#37475a;text-align:center;margin-bottom:14px">Galeria</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;max-width:640px;margin:0 auto">
+                  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=260" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Praia%20de%20Manguinhos%20-%20B%C3%BAzios%20RJ.jpg?width=260" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=260" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=261" alt="" style="width:100%;height:66px;object-fit:cover;border-radius:3px">
+                </div>
+              </div>
+              <div style="background:#37475a;color:#aeb8c4;text-align:center;padding:16px;font-size:11px;line-height:1.7">Pousada Vista Azul · Rua das Palmeiras, 120 · Ilhabela/SP<br>(22) 2623-0000 · contato@vistaazul.com.br · © 2023</div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ hotelIsAfter }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#f6f2ea;font-family:'General Sans','Inter',sans-serif;color:#25332b">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid #25332b12">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <span style="display:inline-flex;width:36px;height:36px;background:#1c332b;border-radius:50%;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:#f4ecdc;letter-spacing:.03em;flex:none">VA</span>
+                  <span style="display:flex;flex-direction:column;line-height:1"><span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;letter-spacing:.13em;color:#1c332b;white-space:nowrap">POUSADA VISTA AZUL</span><span style="font-size:8px;letter-spacing:.32em;color:#25332b70;margin-top:5px">ARMAÇÃO DOS BÚZIOS · RJ</span></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:20px">
+                  <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#25332b8c;white-space:nowrap">Quartos</span>
+                  <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#25332b8c;white-space:nowrap">A Pousada</span>
+                  <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#25332b8c;white-space:nowrap">Contato</span>
+                </div>
+              </div>
+              <div style="position:sticky;top:0;z-index:5;background:#fbf8f1f2;backdrop-filter:blur(10px);border-bottom:1px solid #25332b12;display:flex;align-items:center;gap:14px;padding:12px 24px">
+                <div style="display:flex;align-items:stretch;border:1px solid #25332b26;border-radius:8px;background:#fff;overflow:hidden">
+                  <div style="padding:8px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:8px;letter-spacing:.18em;color:#25332b7a">CHECK-IN</span><span style="font-size:13px;font-weight:600;color:#1c332b">12 ago</span></div>
+                  <div style="width:1px;align-self:stretch;background:#25332b16"></div>
+                  <div style="padding:8px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:8px;letter-spacing:.18em;color:#25332b7a">CHECK-OUT</span><span style="font-size:13px;font-weight:600;color:#1c332b">15 ago</span></div>
+                  <div style="width:1px;align-self:stretch;background:#25332b16"></div>
+                  <div style="padding:8px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:8px;letter-spacing:.18em;color:#25332b7a">HÓSPEDES</span><span style="font-size:13px;font-weight:600;color:#1c332b;white-space:nowrap">2 adultos</span></div>
+                </div>
+                <span style="margin-left:auto;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f4ecdc;background:#1c332b;padding:13px 24px;border-radius:6px;white-space:nowrap">Ver disponibilidade</span>
+              </div>
+              <div data-kenburns style="position:relative;height:340px;background:#12242a center/cover no-repeat;background-color:#2a1550;background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Arma%C3%A7%C3%A3o%20dos%20B%C3%BAzios.jpg?width=1600');display:flex;align-items:flex-end;justify-content:flex-start;text-align:left">
+                <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,26,24,0.86) 0%,rgba(10,26,24,0.3) 52%,rgba(10,26,24,0.05) 100%)"></div>
+                <div data-areveal style="opacity:0;transform:translateY(24px);position:relative;color:#f7f2e8;padding:0 34px 30px;text-shadow:0 1px 14px rgba(0,0,0,0.45)"><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.6vw,60px);font-weight:600;font-style:italic;line-height:1">Acorde com o mar</div><div style="font-size:13.5px;margin-top:12px;opacity:.96;max-width:40ch;line-height:1.5">Uma pousada pé na areia na parte mais quieta da Ferradura.</div></div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);text-align:center;padding:34px 30px 6px;max-width:600px;margin:0 auto"><p style="font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2.2vw,25px);line-height:1.5;font-style:italic;color:#3a4a40;margin:0">Sete quartos, uma piscina de borda infinita e o mar a três minutos a pé. Café da manhã da casa, servido de frente para a água.</p></div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);padding:26px 24px 8px">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;font-style:italic;margin-bottom:18px">Nossos quartos</div>
+                <div style="display:flex;flex-direction:column;gap:18px">
+                  <div style="display:grid;grid-template-columns:270px 1fr;background:#fff;border-radius:9px;overflow:hidden;border:1px solid #25332b12;box-shadow:0 20px 44px -32px #1a181566;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -30px #1a181577">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hotel%20Room.jpg?width=900" alt="Suíte Vista Mar" loading="lazy" style="width:100%;height:100%;min-height:196px;object-fit:cover;display:block">
+                    <div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center">
+                      <div style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;line-height:1">Suíte Vista Mar</div>
+                      <div style="font-size:12.5px;color:#25332b99;margin-top:8px;line-height:1.5">Varanda privativa · cama king · café da manhã incluso</div>
+                      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:16px"><span><span style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#25332b7a">a partir de</span><br><b style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#1c332b;letter-spacing:.01em">R$ 690</b><span style="font-size:11px;color:#25332b7a"> / noite</span></span><span style="font-weight:600;font-size:12px;color:#fff;background:#1c6b5f;padding:9px 20px;border-radius:5px">Reservar</span></div>
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:270px 1fr;background:#fff;border-radius:9px;overflow:hidden;border:1px solid #25332b12;box-shadow:0 20px 44px -32px #1a181566;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -30px #1a181577">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hotel%20room.jpg?width=900" alt="Quarto Jardim" loading="lazy" style="width:100%;height:100%;min-height:196px;object-fit:cover;display:block">
+                    <div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center">
+                      <div style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;line-height:1">Quarto Jardim</div>
+                      <div style="font-size:12.5px;color:#25332b99;margin-top:8px;line-height:1.5">Térreo · cama queen · café da manhã incluso</div>
+                      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:16px"><span><span style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#25332b7a">a partir de</span><br><b style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#1c332b;letter-spacing:.01em">R$ 540</b><span style="font-size:11px;color:#25332b7a"> / noite</span></span><span style="font-weight:600;font-size:12px;color:#fff;background:#1c6b5f;padding:9px 20px;border-radius:5px">Reservar</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);padding:26px 24px 6px"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;font-style:italic;margin-bottom:14px">A pousada</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px 18px;font-size:13px;color:#3a4a40">
+                  <span>◦ Piscina de borda infinita</span><span>◦ Café da manhã da casa</span><span>◦ Wi-Fi rápido</span><span>◦ Pé na areia</span><span>◦ Estacionamento</span><span>◦ Recepção 24h</span>
+                </div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);padding:26px 3px 8px"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;font-style:italic;margin:0 21px 14px">Búzios lá fora</div>
+                <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4px">
+                  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=1000" alt="" style="width:100%;height:170px;object-fit:cover;display:block"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=700" alt="" style="width:100%;height:170px;object-fit:cover;display:block"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Praia%20de%20Manguinhos%20-%20B%C3%BAzios%20RJ.jpg?width=700" alt="" style="width:100%;height:170px;object-fit:cover;display:block">
+                </div>
+              </div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);text-align:center;padding:34px 30px;max-width:620px;margin:0 auto"><p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.4vw,27px);font-style:italic;line-height:1.45;color:#25332b;margin:0">“O melhor lugar em que já ficamos em Búzios. A vista da piscina ao amanhecer é surreal.”</p><div style="font-size:12px;color:#25332b99;margin-top:12px;letter-spacing:.03em">— Marina L. · ★★★★★ no Google</div></div>
+              <div data-areveal style="opacity:0;transform:translateY(24px);background:#1c332b;color:#eef2ea;text-align:center;padding:34px 24px"><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,32px);font-weight:600;font-style:italic">Reserve direto e pague menos</div><span style="display:inline-block;margin-top:16px;font-weight:600;font-size:13px;color:#1c332b;background:#e9c98f;padding:11px 26px;border-radius:5px">Ver disponibilidade</span><div style="font-size:11.5px;color:#eef2eaaa;margin-top:16px;letter-spacing:.03em">Pousada Vista Azul · Armação dos Búzios/RJ · reserva direta, sem taxas de intermediário</div></div>
+            </div>
+            </sc-if>
+
+            </div>
+          </div>
+        </div>
+        <div data-notescol style="position:relative">
+          <sc-if value="{{ hotelIsBefore }}" hint-placeholder-val="{{ true }}">
+      <div data-note data-note-idx="0" style="position:absolute;left:0;right:0;top:3%;transform:rotate(-1.3deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+        <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#FF4A26;color:#fff;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">1</span>
+        <span style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">{{ co1 }}</span>
+      </div>
+      <div data-note data-note-idx="1" style="position:absolute;left:0;right:0;top:27%;transform:rotate(1deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+        <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#1D4ED8;color:#fff;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">2</span>
+        <span style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">{{ co2 }}</span>
+      </div>
+      <div data-note data-note-idx="2" style="position:absolute;left:0;right:0;top:51%;transform:rotate(-0.9deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+        <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#FFB22C;color:#1A1815;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">3</span>
+        <span style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">{{ co3 }}</span>
+      </div>
+      <div data-note data-note-idx="3" style="position:absolute;left:0;right:0;top:75%;transform:rotate(1.2deg);background:#fbf7ef;border:1.5px solid #1A181524;border-radius:12px;padding:15px 16px;box-shadow:0 14px 30px -18px #1a181580;display:flex;gap:11px;align-items:flex-start;z-index:4">
+        <span style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#1A1815;color:#fff;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;line-height:1;flex:none;box-shadow:0 3px 8px -2px #1a181570">4</span>
+        <span style="font-family:'Permanent Marker',cursive;font-size:16.5px;line-height:1.5;color:#1A1815;overflow-wrap:anywhere;padding-top:2px">{{ co4 }}</span>
+      </div>
+          </sc-if>
+          <sc-if value="{{ hotelIsAfter }}" hint-placeholder-val="{{ false }}">
+        <div style="position:sticky;top:96px;background:#1A1815;color:#F4EEE2;border-radius:16px;padding:26px 26px 28px;box-shadow:0 22px 46px -26px #1a1815aa">
+          <span style="font-family:'Permanent Marker',cursive;font-size:16px;color:#FFB22C">{{ hotel.resultKicker }}</span>
+          <p style="font-family:'General Sans','Inter',sans-serif;font-size:16px;line-height:1.55;color:#F4EEE2e6;margin:12px 0 0">{{ hotel.resultSummary }}</p>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;border-top:1px solid #ffffff1f;padding-top:20px">
+            <sc-for list="{{ hotel.resultStats }}" as="st" hint-placeholder-count="3">
+              <div><div style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,2.4vw,32px);line-height:1;color:#F4EEE2">{{ st.n }}</div><div style="font-family:'General Sans','Inter',sans-serif;font-size:13.5px;color:#F4EEE2a6;margin-top:5px;max-width:16ch">{{ st.l }}</div></div>
+            </sc-for>
+          </div>
+        </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOBILE OPTIMISATION — Meia-Noite ============ -->
+  <section id="mobile-work" style="position:relative;z-index:1;padding:clamp(30px,5vw,70px) clamp(20px,5vw,72px) clamp(60px,9vw,120px);max-width:1240px;margin:0 auto">
+    <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,24px)">
+      <span style="font-family:'Permanent Marker',cursive;font-size:clamp(26px,3.2vw,44px);color:#E8321E;line-height:1">03</span>
+      <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#E8321E">{{ mobile.service }}</span>
+    </div>
+    <div style="max-width:46ch;margin-bottom:clamp(26px,4vw,44px)">
+      <h3 data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(30px,3.8vw,52px);line-height:1;letter-spacing:-.02em;margin:0"><span>{{ mobile.name }}</span> <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#E8321E;vertical-align:middle;margin-left:6px">{{ mobile.kind }}</span></h3>
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#1A1815b3;margin:14px 0 0">{{ mobile.lead }}</p>
+    </div>
+
+    <div data-mobilegrid="">
+      <div>
+        <div>
+          <div style="text-align:center;font-family:'Permanent Marker',cursive;font-size:19px;color:#6b7075;margin-bottom:13px">{{ mobile.desktopLabel }}</div>
+          <div style="border-radius:12px;overflow:hidden;box-shadow:0 30px 66px -34px #00000055;border:1px solid #00000018;background:#f4f4f4">
+            <div style="height:32px;background:#e2e2e2;border-bottom:1px solid #00000010;display:flex;align-items:center;gap:7px;padding:0 13px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840"></span><span style="margin-left:14px;font-size:11px;color:#00000099;background:#00000010;padding:3px 14px;border-radius:20px">marealta.com.br</span></div>
+            <div style="height:430px;overflow-y:auto;overflow-x:hidden;background:#f4f4f4;color:#111;font-family:'General Sans','Inter',sans-serif">
+              <div style="background:#111;display:flex;align-items:center;justify-content:space-between;padding:13px 24px"><span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.14em;color:#fff;line-height:1">MARÉ ALTA</span><div style="display:flex;gap:20px;font-size:11px;color:#ffffffcc;align-items:center;text-transform:uppercase;letter-spacing:.1em;font-weight:500">Homem<span>Mulher</span><span>Wetsuits</span><span style="color:#E8321E;font-weight:700">Sale</span><span style="position:relative;display:inline-flex"><span style="width:18px;height:16px;border:2px solid #fff;border-radius:0 0 4px 4px;position:relative;display:inline-block"><span style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:8px;border:2px solid #fff;border-bottom:none;border-radius:6px 6px 0 0"></span></span><span style="position:absolute;top:-7px;right:-8px;background:#E8321E;color:#fff;font-size:9px;font-weight:700;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px">3</span></span></div></div>
+              <div style="position:relative;height:238px;overflow:hidden;background:#0b2530">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Big%20wave.jpg?width=1000" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block">
+                <div style="position:absolute;inset:0;background:linear-gradient(90deg,#000000cc,#00000033 55%,transparent)"></div>
+                <div style="position:absolute;left:30px;top:50%;transform:translateY(-50%)">
+                  <div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#E8321E;font-weight:700;margin-bottom:8px">Nova coleção</div>
+                  <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:.86;letter-spacing:.02em;color:#fff">FEITO PARA<br>O MAR</div>
+                  <span style="display:inline-block;margin-top:16px;background:#E8321E;color:#fff;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px 26px">Comprar agora</span>
+                </div>
+              </div>
+              <div style="background:#111;color:#fff;text-align:center;font-family:'General Sans','Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:9px">Frete grátis acima de R$ 300 · Troca fácil em 30 dias</div>
+              <div style="padding:20px 24px 10px;display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.03em;color:#111">MAIS VENDIDOS</div><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#00000088;font-weight:600">Ver tudo</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:4px 24px 22px">
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wetsuit.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Wetsuits</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Flashbomb 3/2 Wetsuit</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 1.290</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Boardshorts.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Homem</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Boardshort Mirage 19″</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 279</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/T-shirt.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Homem</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Camiseta Icons Tee</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 149</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/G-Shock.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Acessórios</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Relógio Search GPS</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 1.890</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ray-Ban%20sunglasses.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Acessórios</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Óculos The Search</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 349</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+                <div style="background:#fff;border:1px solid #00000010">
+  <div style="position:relative;height:132px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sweatshirt.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:0;top:0;background:#111;color:#fff;font-family:'General Sans','Inter',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px">Mulher</span></div>
+  <div style="padding:11px 12px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;font-weight:600;color:#111;line-height:1.25;min-height:32px">Moletom Surf Hoodie</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:14px;color:#111">R$ 399</span><span style="font-family:'General Sans','Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#E8321E;padding:7px 11px">Comprar</span></div></div>
+</div>
+              </div>
+              <div style="background:#111;color:#cfcfcf;text-align:center;padding:18px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em">MARÉ ALTA SURF CO. — FLORIANÓPOLIS, SCÚZIOS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-phonepair="" style="display:flex;gap:18px;justify-content:center;background:radial-gradient(120% 90% at 50% 15%,#00000012,transparent 62%);border-radius:24px;padding:26px 14px">
+      <div style="flex:none;width:200px">
+        <div style="text-align:center;font-family:'Permanent Marker',cursive;font-size:19px;color:#6b7075;margin-bottom:13px">{{ mobile.badLabel }}</div>
+        <div style="position:relative;border-radius:32px;background:#0b0b0b;padding:7px;box-shadow:0 26px 54px -22px #00000066">
+          <div style="position:absolute;top:15px;left:50%;transform:translateX(-50%);width:58px;height:15px;border-radius:10px;background:#000;z-index:6"></div>
+          <div style="border-radius:26px;overflow:hidden;height:432px;background:#f4f4f4;position:relative">
+            <div style="height:100%;overflow-y:auto;overflow-x:hidden;position:relative;background:#f4f4f4;color:#111;font-family:'Helvetica Neue',Arial,sans-serif">
+              <div style="background:#111;display:flex;align-items:center;gap:9px;white-space:nowrap;padding:9px 10px;font-size:11px;color:#fffc;width:400px"><b style="color:#fff;font-size:12px">MARÉ ALTA</b><span>Homem</span><span>Mulher</span><span>Wetsuits</span><span>Acessórios</span><span>Sale</span><span>Conta</span><span>Sacola (3)</span></div>
+              <div style="position:relative;height:180px;overflow:hidden;background:#0b2530"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wave.jpg?width=900" alt="" loading="eager" style="width:165%;height:180px;max-width:none;object-fit:cover;display:block"><div style="position:absolute;left:8px;top:40px;font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:.9;color:#fff;text-shadow:0 2px 8px #000;width:250px">NOVA COLEÇÃO FEITA PARA O MAR</div><span style="position:absolute;left:8px;top:150px;background:#E8321E;color:#fff;font-size:12px;font-weight:700;padding:7px 14px;white-space:nowrap">COMPRAR A COLEÇÃO COMPLETA</span></div>
+              <div style="display:flex;gap:12px;padding:12px 10px 0;white-space:nowrap;width:520px">
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wetsuit.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Flashbomb 3/2 Wetsuit</b><br><span style="color:#E8321E;font-weight:700">R$ 1.290</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Boardshorts.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Boardshort Mirage 19″</b><br><span style="color:#E8321E;font-weight:700">R$ 279</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/T-shirt.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Camiseta Icons Tee</b><br><span style="color:#E8321E;font-weight:700">R$ 149</span></div></div>
+              </div>
+              <div style="display:flex;gap:12px;padding:8px 10px 0;white-space:nowrap;width:520px">
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/G-Shock.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Relógio Search GPS</b><br><span style="color:#E8321E;font-weight:700">R$ 1.890</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ray-Ban%20sunglasses.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Óculos The Search</b><br><span style="color:#E8321E;font-weight:700">R$ 349</span></div></div>
+                <div style="width:150px;flex:none;border:1px solid #00000014;background:#fff"><div style="height:78px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sweatshirt.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:7px 8px;font-size:11px"><b>Moletom Surf Hoodie</b><br><span style="color:#E8321E;font-weight:700">R$ 399</span></div></div>
+              </div>
+              <div style="padding:12px 10px;font-size:12px;line-height:1.4;color:#00000099;width:320px">Confira nossa coleção completa de wetsuits, boardshorts, roupas e acessórios. Frete grátis acima de R$ 300 e troca fácil em até 30 dias.</div>
+              <div style="position:absolute;right:0;top:38px;bottom:0;width:6px;background:linear-gradient(90deg,transparent,#00000055)"></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;font-family:'General Sans','Inter',sans-serif;font-size:16px;color:#E8321E;margin-top:13px;line-height:1.4;max-width:200px;font-weight:500;margin-left:auto;margin-right:auto">{{ mobile.badNote }}</div>
+      </div>
+      <div style="flex:none;width:200px">
+        <div style="text-align:center;font-family:'Permanent Marker',cursive;font-size:19px;color:#6b7075;margin-bottom:13px">{{ mobile.goodLabel }}</div>
+        <div style="position:relative;border-radius:32px;background:#0b0b0b;padding:7px;box-shadow:0 26px 54px -22px #00000066">
+          <div style="position:absolute;top:15px;left:50%;transform:translateX(-50%);width:58px;height:15px;border-radius:10px;background:#000;z-index:6"></div>
+          <div style="border-radius:26px;overflow:hidden;height:432px;background:#f4f4f4;position:relative">
+            <div style="height:100%;display:flex;flex-direction:column;background:#f4f4f4;color:#111;font-family:'General Sans','Inter',sans-serif">
+              <div style="flex:none;background:#111;display:flex;align-items:center;justify-content:space-between;padding:11px 13px"><span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.12em;color:#fff">MARÉ ALTA</span><div style="display:flex;align-items:center;gap:11px"><span style="display:flex;flex-direction:column;gap:2.5px"><span style="width:15px;height:2px;background:#fff"></span><span style="width:15px;height:2px;background:#fff"></span><span style="width:15px;height:2px;background:#fff"></span></span><span style="position:relative;display:inline-flex"><span style="width:18px;height:16px;border:2px solid #fff;border-radius:0 0 4px 4px;position:relative;display:inline-block"><span style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:8px;border:2px solid #fff;border-bottom:none;border-radius:6px 6px 0 0"></span></span><span style="position:absolute;top:-7px;right:-8px;background:#E8321E;color:#fff;font-size:9px;font-weight:700;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px">3</span></span></div></div>
+              <div style="flex:1;overflow-y:auto;overflow-x:hidden">
+                <div style="position:relative;height:150px;overflow:hidden;background:#0b2530">
+                  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Beach%20surf.jpg?width=560" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block">
+                  <div style="position:absolute;inset:0;background:linear-gradient(0deg,#000000d9,#00000033 60%,transparent)"></div>
+                  <div style="position:absolute;left:13px;right:13px;bottom:12px"><div style="font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:#E8321E;font-weight:700;margin-bottom:4px">Nova coleção</div><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:.86;letter-spacing:.02em;color:#fff">FEITO PARA<br>O MAR</div></div>
+                </div>
+                <div style="padding:11px 12px 0"><span style="display:block;text-align:center;background:#E8321E;color:#fff;font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px">Comprar agora</span></div>
+                <div style="background:#111;color:#fff;text-align:center;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:7px;margin:11px 0">Frete grátis acima de R$ 300</div>
+                <div style="padding:2px 12px 4px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.03em;color:#111;margin-bottom:8px">MAIS VENDIDOS</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wetsuit.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Flashbomb 3/2</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 1.290</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Boardshorts.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Boardshort Mirage</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 279</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/T-shirt.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Camiseta Icons</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 149</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                    <div style="background:#fff;border:1px solid #00000010">
+  <div style="height:92px;background:#f1f1f1;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/G-Shock.jpg?width=420" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div style="padding:8px 9px"><div style="font-family:'General Sans','Inter',sans-serif;font-size:11px;font-weight:600;color:#111;line-height:1.2;min-height:27px">Relógio Search</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><span style="font-family:'General Sans','Inter',sans-serif;font-weight:700;font-size:12px;color:#111">R$ 1.890</span><span style="width:23px;height:23px;background:#E8321E;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">+</span></div></div>
+</div>
+                  </div>
+                </div>
+                <div style="height:8px"></div>
+              </div>
+              <div style="flex:none;background:#fff;border-top:1px solid #00000012;padding:9px 13px;display:flex;align-items:center;gap:10px"><div style="flex:1;line-height:1.2"><div style="font-size:9px;color:#00000088">Sacola · 3 itens</div><div style="font-family:'General Sans','Inter',sans-serif;font-size:14px;font-weight:700;color:#111">R$ 1.718</div></div><span style="background:#111;color:#fff;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:11px 16px">Finalizar</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;font-family:'General Sans','Inter',sans-serif;font-size:16px;color:#111;margin-top:13px;line-height:1.4;max-width:200px;font-weight:500;margin-left:auto;margin-right:auto">{{ mobile.goodNote }}</div>
+      </div>
+      </div>
+    </div>
+
+    <div data-reveal="" style="opacity:0;transform:translateY(26px);margin-top:clamp(30px,4vw,52px);background:#111;border:1px solid #E8321E44;border-radius:18px;padding:clamp(24px,3vw,36px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between">
+      <div style="max-width:34ch">
+        <span style="font-family:'Permanent Marker',cursive;font-size:16px;color:#ff8a76">{{ mobile.addonKicker }}</span>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:8px"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(22px,2.4vw,30px);color:#F4EEE2;line-height:1">{{ mobile.addon }}</span><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(22px,2.4vw,30px);color:#ff8a76;line-height:1">{{ mobile.addonPrice }}</span></div>
+        <p style="font-family:'General Sans','Inter',sans-serif;font-size:14.5px;line-height:1.5;color:#F4EEE2b3;margin:12px 0 0">{{ mobile.addonNote }}</p>
+      </div>
+      <div style="display:flex;gap:clamp(20px,2.6vw,40px);flex-wrap:wrap">
+        <sc-for list="{{ mobile.stats }}" as="st" hint-placeholder-count="3">
+          <div><div style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,2.6vw,38px);line-height:1;color:#ff8a76">{{ st.n }}</div><div style="font-family:'General Sans','Inter',sans-serif;font-size:13px;color:#F4EEE2a6;margin-top:5px;max-width:15ch">{{ st.l }}</div></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" style="position:relative;z-index:1;background:#EBE3D4;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px)">
+    <div style="max-width:1160px;margin:0 auto">
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26;margin:0 0 40px;text-align:center">{{ t.servKicker }}</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)" data-servgrid="">
+        <div data-reveal="" style="opacity:0;transform:translateY(26px);background:#F4EEE2;border-radius:18px;padding:clamp(28px,3.5vw,48px);border:1px solid #1d4ed81f;display:flex;flex-direction:column">
+          <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1D4ED8">01</span>
+          <h3 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,3.2vw,42px);line-height:1.05;margin:14px 0 0;color:#1A1815">{{ t.serv1Title }}</h3>
+          <p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#1A1815cc;margin:18px 0 0">{{ t.serv1Body }}</p>
+          <span style="margin-top:auto;padding-top:26px;font-family:'Permanent Marker',cursive;font-size:18px;color:#1D4ED8">{{ t.serv1Sub }}</span>
+        </div>
+        <div data-reveal="" style="opacity:0;transform:translateY(26px);background:#1A1815;border-radius:18px;padding:clamp(28px,3.5vw,48px);display:flex;flex-direction:column;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,#FF4A2655,transparent 70%)"></div>
+          <span style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#FF4A26">02</span>
+          <h3 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(26px,3.2vw,42px);line-height:1.05;margin:14px 0 0;color:#F4EEE2">{{ t.serv2Title }}</h3>
+          <p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#F4EEE2cc;margin:18px 0 0">{{ t.serv2Body }}</p>
+          <span style="margin-top:auto;padding-top:26px;font-family:'Permanent Marker',cursive;font-size:18px;color:#FFB22C">{{ t.serv2Sub }}</span>
+        </div>
+      </div>
+      <div id="prices" data-reveal="" style="opacity:0;transform:translateY(26px);scroll-margin-top:90px;margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:8px 16px;text-align:center">
+        <span style="font-family:'General Sans','Inter',sans-serif;font-size:15px;letter-spacing:.02em;color:#1A181599">{{ t.priceLabel }}</span>
+        <span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1;color:#FF4A26">{{ t.priceRange }}</span>
+        <span style="width:100%;font-family:'General Sans','Inter',sans-serif;font-size:14.5px;color:#1A181599;margin-top:2px">{{ t.priceNote }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process" style="position:relative;z-index:1;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px);max-width:980px;margin:0 auto">
+    <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'Permanent Marker',cursive;font-size:18px;color:#FF4A26;margin:0 0 14px;transform:rotate(-1.5deg)">{{ t.procKicker }}</p>
+    <h2 data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(30px,4.6vw,60px);line-height:1.02;margin:0 0 clamp(36px,5vw,64px);letter-spacing:-.02em">{{ t.procTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:clamp(22px,3vw,40px)">
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#FF4A26;flex:none;min-width:1.6em">01</span><div><h4 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">{{ step1.t }}</h4><p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">{{ step1.d }}</p></div></div>
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#1D4ED8;flex:none;min-width:1.6em">02</span><div><h4 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">{{ step2.t }}</h4><p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">{{ step2.d }}</p></div></div>
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#FFB22C;flex:none;min-width:1.6em">03</span><div><h4 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">{{ step3.t }}</h4><p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">{{ step3.d }}</p></div></div>
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;border-bottom:1px solid #1a18151f;padding-bottom:clamp(22px,3vw,40px)"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#FF4A26;flex:none;min-width:1.6em">04</span><div><h4 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">{{ step4.t }}</h4><p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">{{ step4.d }}</p></div></div>
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;gap:clamp(18px,3vw,40px);align-items:baseline"><span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(20px,2.2vw,30px);color:#1D4ED8;flex:none;min-width:1.6em">05</span><div><h4 style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(24px,3vw,38px);margin:0;line-height:1">{{ step5.t }}</h4><p style="font-family:'General Sans','Inter',sans-serif;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#1A1815b3;margin:10px 0 0;max-width:46ch">{{ step5.d }}</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" style="position:relative;z-index:1;padding:clamp(60px,9vw,130px) clamp(20px,5vw,72px)">
+    <div style="max-width:880px;margin:0 auto;text-align:center">
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#FF4A26;margin:0 0 20px">{{ t.contactKicker }}</p>
+      <h2 data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'Shantell Sans',cursive;font-weight:700;font-size:clamp(34px,5.6vw,76px);line-height:1.0;letter-spacing:-.02em;margin:0;text-wrap:balance">{{ t.contactTitle }}</h2>
+      <p data-reveal="" style="opacity:0;transform:translateY(26px);font-family:'General Sans','Inter',sans-serif;font-size:clamp(17px,1.5vw,21px);color:#1A1815b3;margin:20px 0 0">{{ t.contactSub }}</p>
+
+      <form onSubmit="{{ onSubmit }}" data-reveal="" style="opacity:0;transform:translateY(26px);margin:clamp(36px,5vw,56px) auto 0;max-width:560px;text-align:left;display:flex;flex-direction:column;gap:22px">
+        <input name="name" type="text" required="" placeholder="{{ t.fName }}" style="background:transparent;border:none;border-bottom:2px solid #1a181533;padding:12px 2px;font-family:'General Sans','Inter',sans-serif;font-size:18px;color:#1A1815;outline:none" style-focus="border-bottom-color:#FF4A26">
+        <input name="biz" type="text" placeholder="{{ t.fBiz }}" style="background:transparent;border:none;border-bottom:2px solid #1a181533;padding:12px 2px;font-family:'General Sans','Inter',sans-serif;font-size:18px;color:#1A1815;outline:none" style-focus="border-bottom-color:#FF4A26">
+        <textarea name="msg" rows="3" placeholder="{{ t.fMsg }}" style="background:transparent;border:none;border-bottom:2px solid #1a181533;padding:12px 2px;font-family:'General Sans','Inter',sans-serif;font-size:18px;color:#1A1815;outline:none;resize:vertical" style-focus="border-bottom-color:#FF4A26"></textarea>
+        <div style="position:relative;align-self:flex-start;margin-top:6px">
+          <button type="submit" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:17px;color:#F4EEE2;background:#FF4A26;border:none;cursor:pointer;padding:15px 34px;border-radius:34px">{{ t.fSend }}</button>
+          <span style="position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%) rotate(-4deg);white-space:nowrap;font-family:'Permanent Marker',cursive;font-size:17px;color:#1D4ED8">← {{ t.goOn }}</span>
+        </div>
+        <p data-thanks="" style="display:none;font-family:'Permanent Marker',cursive;font-size:18px;color:#1D4ED8;margin:2px 0 0">{{ t.thanks }}</p>
+      </form>
+
+      <div data-reveal="" style="opacity:0;transform:translateY(26px);display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:clamp(34px,5vw,50px)">
+        <a href="mailto:hello@sasha.studio" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:15px;color:#1A1815;text-decoration:none;border:1.5px solid #1A1815;padding:12px 24px;border-radius:30px">✉ {{ t.emailLabel }}</a>
+        <a href="https://wa.me/000000000000" target="_blank" rel="noopener" style="font-family:'General Sans','Inter',sans-serif;font-weight:600;font-size:15px;color:#1A1815;text-decoration:none;border:1.5px solid #1A1815;padding:12px 24px;border-radius:30px">◉ {{ t.waLabel }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="position:relative;z-index:1;background:#1A1815;color:#F4EEE2;padding:clamp(44px,6vw,72px) clamp(20px,5vw,72px)">
+    <div style="max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:28px;letter-spacing:-.5px">Sasha</div>
+        <div style="font-family:'Permanent Marker',cursive;font-size:16px;color:#FFB22C;margin-top:6px">{{ t.footTag }}</div>
+      </div>
+      <div style="display:flex;gap:22px;align-items:center;font-family:'General Sans','Inter',sans-serif;font-weight:500;font-size:15px">
+        <a href="https://wa.me/000000000000" target="_blank" rel="noopener" style="color:#F4EEE2cc;text-decoration:none">{{ t.waLabel }}</a>
+        <a href="mailto:hello@sasha.studio" style="color:#F4EEE2cc;text-decoration:none">{{ t.emailLabel }}</a>
+        <div style="display:flex;align-items:center;gap:7px">
+          <button onClick="{{ setEN }}" style="background:none;border:none;cursor:pointer;font:inherit;color:#F4EEE2;font-weight:600;opacity:.95">EN</button>
+          <span style="opacity:.4">/</span>
+          <button onClick="{{ setPT }}" style="background:none;border:none;cursor:pointer;font:inherit;color:#F4EEE2;font-weight:600;opacity:.95">PT</button>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1160px;margin:28px auto 0;border-top:1px solid #ffffff1a;padding-top:18px;font-family:'General Sans','Inter',sans-serif;font-size:14px;color:#F4EEE266">© {{ year }} Sasha · {{ t.role }}</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLocale&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;pt&quot;],&quot;default&quot;:&quot;pt&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;headlineVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;],&quot;default&quot;:&quot;1&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;cursorTrail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { locale: (this.props.defaultLocale === 'pt' ? 'pt' : 'en'), restView: 'site', hotelView: 'before' };
+
+  pageRef = React.createRef();
+  sliderRef = React.createRef();
+  beforeRef = React.createRef();
+  handleRef = React.createRef();
+  trailRef = React.createRef();
+
+  SITE = {
+    nav: ['Menu', 'A Casa', 'Contato'], reserve: 'Reservar',
+    kicker: 'PARATY · COSTA VERDE', title: 'Do mar à mesa', sub: 'Frutos do mar na brasa, ao cair da tarde.',
+    dishesTitle: 'Da nossa cozinha',
+    dishes: [
+      { n: 'Moqueca de Camarão', p: 'R$ 128', d: 'Leite de coco, dendê, pirão da casa.', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Moqueca%20de%20frutos%20do%20mar%20(seafood%20stew%2C%20Brazilian%20style)%20(51338403464).jpg?width=1000' },
+      { n: 'Peixe na Telha', p: 'R$ 96', d: 'Pescado do dia, ervas, limão siciliano.', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Moqueca%20de%20Ca%C3%A7%C3%A3o.jpg?width=1000' },
+      { n: 'Frutos do Mar', p: 'R$ 148', d: 'Do dia, na brasa, para dividir.', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Plate%20of%20seafood%2C%20Mozambique.jpg?width=1000' }
+    ],
+    expTitle: 'Onde o mar encontra a mesa', expBody: 'No alto da orla, à luz de velas. Cada prato começa no barco da manhã e termina no seu ao anoitecer.',
+    hours: 'Todos os dias · 17h – 23h30', addr: 'Rua da Praia, 240 · Paraty/RJ', footCta: 'Reservar pelo WhatsApp'
+  };
+  HSITE = {
+    name: 'Pousada Vista Azul',
+    // ---- shared photo urls ----
+    imgOrla: 'https://commons.wikimedia.org/wiki/Special:FilePath/Buzios%20RJ%20Brasil%20-%20Orla%20Bardot%20-%20panoramio.jpg?width=',
+    imgMang: 'https://commons.wikimedia.org/wiki/Special:FilePath/Praia%20de%20Manguinhos%20-%20B%C3%BAzios%20RJ.jpg?width=',
+    imgSun: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20beach%20at%20sunset%20(Unsplash).jpg?width=',
+    // ---- worse (before) ----
+    navB: ['Início', 'Sobre Nós', 'Quartos', 'Fotos', 'Localização', 'Contato'], phone: '(22) 2623-0000',
+    priceB: 'Consulte valores', roomStd: 'Quarto Standard', roomDlx: 'Quarto Luxo',
+    // ---- better (after) ----
+    navA: ['Quartos', 'A Pousada', 'Localização', 'Contato'],
+    checkin: 'ENTRADA', checkinV: '12 ago', checkout: 'SAÍDA', checkoutV: '15 ago', guests: '2 hóspedes', avail: 'Ver disponibilidade',
+    heroTitleA: 'Acorde com o mar', heroSubA: 'Uma pousada pé na areia na parte mais quieta da Ferradura.',
+    introA: 'Sete quartos, uma piscina de borda infinita e o mar a três minutos a pé. Café da manhã da casa, servido de frente para a água.',
+    roomsTA: 'Nossos quartos', fromLabel: 'a partir de',
+    roomsA: [
+      { n: 'Suíte Vista Mar', p: 'R$ 690', u: '/noite', a: 'Varanda privativa · cama king · café da manhã incluso' },
+      { n: 'Quarto Jardim', p: 'R$ 540', u: '/noite', a: 'Térreo · cama queen · café da manhã incluso' }
+    ],
+    amenTitle: 'A pousada', amen: ['Piscina de borda infinita', 'Café da manhã da casa', 'Wi-Fi rápido', 'Pé na areia', 'Estacionamento', 'Recepção 24h'],
+    galTitle: 'Ilhabela lá fora',
+    testi: '“O melhor lugar em que já ficamos em Ilhabela. A vista da piscina ao amanhecer é surreal.”', testiWho: '— Marina L. · ★★★★★ no Google',
+    ctaTitle: 'Reserve direto e pague menos', ctaBtn: 'Ver disponibilidade', footA: 'Reserva direta · sem taxas de intermediário'
+  };
+  STR = {
+    en: {
+      role: 'Website Designer',
+      ui: { scroll: 'scroll to explore', tap: 'tap to switch', before: 'Before', after: 'After' },
+      nav: { work: 'Work', services: 'Services & Prices', process: 'Process', cta: "Let's talk" },
+      headlines: {
+        '1': { pre: 'I make websites people actually ', emph: 'remember', post: '.' },
+        '2': { pre: 'Same business. ', emph: 'Unrecognisable', post: ' website.' },
+        '3': { pre: 'Before me, ', emph: 'and after me', post: '.' }
+      },
+      heroSub: 'Websites for hotels, restaurants, and other businesses.',
+      heroCta: 'See the work', heroCta2: 'Meet me first',
+      scrollCue: 'the fun part', meNote: "that's me",
+      aboutKicker: 'a little about me',
+      aboutBody: "I'm Sasha. I make websites for hotels, restaurants, and bars.",
+      about: {
+        lead: "I'm Sasha. I make websites for hotels, restaurants, and bars: ",
+        w1: 'artful', mid1: ' in how they look, ',
+        w2: 'intentional', mid2: ' in every detail, and ',
+        w3: 'high-quality', tail: ' from the first click to the last. I get to know your place first, then build a site that fits it. No templates.',
+        p2: "I studied engineering at the University of Cambridge, and I bring that same structure to every site. I mostly work with hotels, restaurants, and bars, but I've also built for tech companies, fight clubs, and plenty of other businesses, small to large. Most of the companies I've worked with have been in London. Whatever yours is, I build the site around what it needs."
+      },
+      words: ['Playful', 'Intentional', 'Confident'],
+      transKicker: 'the transformation',
+      transIntro: "Here's the fun part",
+      transBody: 'Three examples: one site built from scratch, one older site made better, and one made to work properly on phones. Have a look.',
+      transNote: 'These examples are recreations. My real client work is kept private at their request.',
+      rest: {
+        service: 'Creation · from scratch', name: 'Maresia', vSketch: 'The sketch', vSite: 'Live site',
+        lead: "A restaurant on the Brazilian coast that didn't have a website. I built one for them, from the first sketch to a site that brings in bookings.",
+        story: [
+          { n: '01', t: 'They had no website.', d: 'A small coastal restaurant. Bookings came by phone and DM, and a lot got missed.' },
+          { n: '02', t: 'We built it together.', d: 'I visited, we talked through what they needed, took photos of the food, and had the site live in three weeks.' },
+          { n: '03', t: 'Now it brings in bookings.', d: 'People book online before the restaurant opens, and weekends fill up early.' }
+        ],
+        stats: [ { n: '+36', l: 'online bookings, first month' }, { n: '1 wk', l: 'to build and launch' }, { n: '100%', l: 'built for them' } ],
+        sketchNote: 'where it started →', tryIt: 'see the sketch →'
+      },
+      hotel: {
+        service: 'Alteration & Improvement', name: 'Pousada Vista Azul', before: 'Before', after: 'After',
+        lead: 'An older hotel site, redesigned. Same photos and content, but easier to use and better at getting bookings. Switch between Before and After to see what changed.',
+        note: 'A few things anyone would notice.',
+        callouts: [
+          "Not a single price anywhere. You'd have to call just to find out what a room costs.",
+          'The photos are tiny, and none of them show the rooms.',
+          "It's cluttered and dated, the kind of site you don't quite trust.",
+          'No clear way to book. No dates, no button that stays with you.'
+        ],
+        resultKicker: 'the result',
+        resultSummary: 'Rebuilt from scratch. Clear prices on every room, big real photos, and a booking bar that stays with you while you browse.',
+        resultStats: [ { n: '4 days', l: 'to redesign' }, { n: '+42%', l: 'more online bookings' }, { n: '3\u00d7', l: 'longer on the site' } ]
+      },
+      mobile: {
+        service: 'Mobile optimisation', name: 'Maré Alta', kind: 'Surf shop',
+        lead: "Most people shop from their phone. This surf shop looked fine on a laptop but was a pain to actually buy from on a phone. I fixed that.",
+        desktopLabel: 'On a laptop', badLabel: 'On a phone, before', goodLabel: 'On a phone, after',
+        badNote: 'Cramped, cut off, hard to buy.', goodNote: 'Clean, easy to browse and check out.',
+        addonKicker: 'the add-on', addon: 'Phone optimisation', addonPrice: '+R$ — price to be discussed',
+        addonNote: 'Added to any project. This is where most of your customers actually shop.',
+        stats: [ { n: '72%', l: 'of visitors shop on a phone' }, { n: '+38%', l: 'more sales from phones' }, { n: '-22%', l: 'fewer abandoned carts' } ]
+      },
+      servKicker: 'two ways in',
+      priceLabel: 'Every website is different, so prices are too. Most fall between',
+      priceRange: 'R$ 1,500 – R$ 7,000',
+      priceNote: 'The price depends on how big and complex the site is, how many changes you want, and how much creative work is involved. Bigger, more complex sites usually take up to a week.',
+      serv1Title: 'Alteration & Improvement', serv1Body: "You already have a website. I'll redesign it so it works better and looks the way you want.", serv1Sub: 'Same content, better site.',
+      serv2Title: 'Creation', serv2Body: "No website yet? I'll design and build one from scratch.", serv2Sub: 'From first sketch to finished site.',
+      procKicker: 'how I work', procTitle: 'Five simple steps.',
+      steps: [
+        { t: 'Listen', d: 'We talk about your business, your customers, and what you need the site to do.' },
+        { t: 'Sketch', d: 'I plan the layout on paper before designing anything.' },
+        { t: 'Build', d: 'I design and build the site by hand. No templates.' },
+        { t: 'Launch', d: 'Your site goes live, quick and working properly.' },
+        { t: 'Maintain', d: 'After launch I keep it updated and running well, and change it as you grow.' }
+      ],
+      contactKicker: "let's make something",
+      contactTitle: "Let's create the perfect website for you and your customers, together.", contactSub: 'Tell me about it. I answer every message.',
+      fName: 'Your name', fBiz: 'Your place', fMsg: 'Tell me about your place', fSend: 'Send', goOn: 'go on',
+      thanks: "Thanks. I'll get back to you soon.",
+      emailLabel: 'Email', waLabel: 'WhatsApp',
+      footTag: 'Made by hand.'
+    },
+    pt: {
+      role: 'Designer de Sites',
+      ui: { scroll: 'role para explorar', tap: 'toque para trocar', before: 'Antes', after: 'Depois' },
+      nav: { work: 'Trabalhos', services: 'Serviços & Preços', process: 'Processo', cta: 'Vamos conversar' },
+      headlines: {
+        '1': { pre: 'Faço sites que as pessoas realmente ', emph: 'lembram', post: '.' },
+        '2': { pre: 'O mesmo negócio. ', emph: 'Outro site', post: ' completamente.' },
+        '3': { pre: 'Antes de mim, ', emph: 'e depois de mim', post: '.' }
+      },
+      heroSub: 'Sites para hotéis, restaurantes e outros negócios.',
+      heroCta: 'Ver os trabalhos', heroCta2: 'Me conheça antes',
+      scrollCue: 'a melhor parte', meNote: 'sou eu',
+      aboutKicker: 'um pouco sobre mim',
+      aboutBody: 'Sou Sasha. Faço sites para hotéis, restaurantes e bares.',
+      about: {
+        lead: 'Sou Sasha. Faço sites para hotéis, restaurantes e bares: ',
+        w1: 'com arte', mid1: ' na aparência, ',
+        w2: 'intencionais', mid2: ' em cada detalhe e ',
+        w3: 'de qualidade', tail: ' do primeiro ao último clique. Primeiro conheço o seu lugar, depois crio um site com a cara dele. Sem templates.',
+        p2: 'Estudei engenharia na Universidade de Cambridge e trago essa mesma estrutura para cada site. Trabalho principalmente com hotéis, restaurantes e bares, mas também já criei sites para empresas de tecnologia, clubes de luta e vários outros negócios, pequenos e grandes. A maioria das empresas com quem trabalhei fica em Londres. Seja qual for o seu, crio o site em torno do que ele precisa.'
+      },
+      words: ['Divertido', 'Intencional', 'Confiante'],
+      transKicker: 'a transformação',
+      transIntro: 'Agora vem a parte boa',
+      transBody: 'Três exemplos: um site criado do zero, um site antigo melhorado e um feito para funcionar bem no celular. Dê uma olhada.',
+      transNote: 'Estes exemplos são recriações. O trabalho real dos meus clientes fica privado, a pedido deles.',
+      rest: {
+        service: 'Criação · do zero', name: 'Maresia', vSketch: 'O rascunho', vSite: 'Site no ar',
+        lead: 'Um restaurante no litoral brasileiro que não tinha site. Criei um para eles, do primeiro rascunho a um site que traz reservas.',
+        story: [
+          { n: '01', t: 'Eles não tinham site.', d: 'Um restaurante pequeno no litoral. As reservas chegavam por telefone e DM, e muitas se perdiam.' },
+          { n: '02', t: 'Criamos juntos.', d: 'Fui até lá, conversamos sobre o que precisavam, tiramos fotos dos pratos e o site ficou pronto em três semanas.' },
+          { n: '03', t: 'Agora traz reservas.', d: 'As pessoas reservam online antes de o restaurante abrir, e os fins de semana enchem cedo.' }
+        ],
+        stats: [ { n: '+36', l: 'reservas online no 1º mês' }, { n: '1 sem', l: 'para criar e publicar' }, { n: '100%', l: 'feito para eles' } ],
+        sketchNote: 'onde tudo começou →', tryIt: 'ver o rascunho →'
+      },
+      hotel: {
+        service: 'Reforma & Melhoria', name: 'Pousada Vista Azul', before: 'Antes', after: 'Depois',
+        lead: 'Um site de hotel antigo, redesenhado. As mesmas fotos e o mesmo conteúdo, mas mais fácil de usar e melhor para conseguir reservas. Alterne entre Antes e Depois para ver o que mudou.',
+        note: 'Coisas que qualquer um percebe.',
+        callouts: [
+          'Nenhum preço em lugar nenhum. Você teria que ligar só para saber quanto custa um quarto.',
+          'As fotos são minúsculas, e nenhuma delas mostra os quartos.',
+          'É poluído e datado, daquele tipo de site em que você não confia muito.',
+          'Nenhuma forma clara de reservar. Sem datas, sem botão que te acompanha.'
+        ],
+        resultKicker: 'o resultado',
+        resultSummary: 'Refeito do zero. Preços claros em cada quarto, fotos reais em tamanho grande e uma barra de reserva que acompanha você enquanto navega.',
+        resultStats: [ { n: '4 dias', l: 'para redesenhar' }, { n: '+42%', l: 'mais reservas online' }, { n: '3\u00d7', l: 'mais tempo no site' } ]
+      },
+      mobile: {
+        service: 'Otimização mobile', name: 'Maré Alta', kind: 'Loja de surf',
+        lead: 'A maioria das pessoas compra pelo celular. Esta loja de surf ficava boa no notebook, mas era difícil de comprar pelo celular. Eu resolvi isso.',
+        desktopLabel: 'No notebook', badLabel: 'No celular, antes', goodLabel: 'No celular, depois',
+        badNote: 'Espremido, cortado, difícil de comprar.', goodNote: 'Limpo, fácil de navegar e finalizar.',
+        addonKicker: 'o adicional', addon: 'Otimização para celular', addonPrice: '+R$ — valor a combinar',
+        addonNote: 'Somado a qualquer projeto. É onde a maioria dos seus clientes realmente compra.',
+        stats: [ { n: '72%', l: 'dos visitantes compram pelo celular' }, { n: '+38%', l: 'mais vendas pelo celular' }, { n: '-22%', l: 'menos carrinhos abandonados' } ]
+      },
+      servKicker: 'dois caminhos',
+      priceLabel: 'Cada site é diferente, e o preço também. A maioria fica entre',
+      priceRange: 'R$ 1.500 – R$ 7.000',
+      priceNote: 'O preço depende do tamanho e da complexidade do site, de quantas mudanças você quer e de quanto trabalho criativo envolve. Sites maiores e mais complexos costumam levar até uma semana.',
+      serv1Title: 'Reforma & Melhoria', serv1Body: 'Você já tem um site. Eu redesenho para ele funcionar melhor e ficar do jeito que você quer.', serv1Sub: 'O mesmo conteúdo, um site melhor.',
+      serv2Title: 'Criação', serv2Body: 'Ainda não tem site? Eu crio e desenvolvo um do zero.', serv2Sub: 'Do primeiro rascunho ao site pronto.',
+      procKicker: 'como eu trabalho', procTitle: 'Cinco passos simples.',
+      steps: [
+        { t: 'Ouvir', d: 'Conversamos sobre o seu negócio, os seus clientes e o que o site precisa fazer.' },
+        { t: 'Esboçar', d: 'Planejo o layout no papel antes de desenhar qualquer coisa.' },
+        { t: 'Construir', d: 'Desenho e desenvolvo o site à mão. Sem templates.' },
+        { t: 'Lançar', d: 'Seu site vai ao ar, rápido e funcionando bem.' },
+        { t: 'Manter', d: 'Depois do lançamento, mantenho o site atualizado e funcionando bem, e mudo conforme você cresce.' }
+      ],
+      contactKicker: 'vamos criar algo',
+      contactTitle: 'Vamos criar o site perfeito para você e seus clientes, juntos.', contactSub: 'Me conta sobre ele. Eu respondo todas as mensagens.',
+      fName: 'Seu nome', fBiz: 'Seu lugar', fMsg: 'Me conte sobre o seu lugar', fSend: 'Enviar', goOn: 'vai lá',
+      thanks: 'Obrigada. Logo entro em contato.',
+      emailLabel: 'E-mail', waLabel: 'WhatsApp',
+      footTag: 'Feito à mão.'
+    }
+  };
+
+  setLoc(l) { this.setState({ locale: l }); }
+  setRestSite = () => this.setState({ restView: 'site' });
+  setRestSketch = () => this.setState({ restView: 'sketch' });
+  setHotelBefore = () => this.setState({ hotelView: 'before' });
+  setHotelAfter = () => this.setState({ hotelView: 'after' });
+
+  nudge(frame) {
+    const max = frame.scrollHeight - frame.clientHeight;
+    if (max < 20 || frame.scrollTop > 4) return;
+    const peak = Math.min(74, max), t0 = performance.now(), dur = 1150;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      if (frame._userScrolled) return;
+      frame.scrollTop = peak * Math.sin(p * Math.PI);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  peek(group) {
+    const btns = group.querySelectorAll('button');
+    if (btns.length < 2) return;
+    setTimeout(() => { const b = group.querySelectorAll('button')[1]; if (b) b.click(); }, 500);
+    setTimeout(() => { const b = group.querySelectorAll('button')[0]; if (b) b.click(); }, 1650);
+  }
+  checkCues(vh) {
+    if (this.reduced) return;
+    const root = this.pageRef.current; if (!root) return;
+    if (!this._cueEls) this._cueEls = Array.from(root.querySelectorAll('[data-nudge],[data-peek]'));
+    this._cueEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (!(r.top < vh * 0.72 && r.bottom > vh * 0.3)) return;
+      if (el.hasAttribute('data-nudge') && !el._nudged) { el._nudged = true; this.nudge(el); }
+      if (el.hasAttribute('data-peek') && !el._peeked) { el._peeked = true; this.peek(el); }
+    });
+  }
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.fine = window.matchMedia('(pointer: fine)').matches;
+    this.initInk();
+    this.initReveal();
+    this.onScroll();
+    this._scrolling = false;
+    this.onScrollRAF = () => { if (this._scrolling) return; this._scrolling = true; requestAnimationFrame(() => { this.onScroll(); this._scrolling = false; }); };
+    window.addEventListener('scroll', this.onScrollRAF, { passive: true });
+    this.onResize = () => { this.onScroll(); };
+    window.addEventListener('resize', this.onResize);
+    try { this.ro = new ResizeObserver(() => this.onResize()); this.ro.observe(this.pageRef.current); } catch (e) {}
+    if (this.fine && !this.reduced && (this.props.cursorTrail !== false)) {
+      this.onMouseTrail = this.makeTrail();
+      window.addEventListener('mousemove', this.onMouseTrail, { passive: true });
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { this.onScroll(); });
+    this.setupFrameReveals();
+    this.setupAutoScroll();
+  }
+
+  setupAutoScroll() {
+    return; // vertical auto-scroll disabled
+    const root = this.pageRef.current;
+    if (!root) return;
+    if (this._asRAF) cancelAnimationFrame(this._asRAF);
+    if (this.reduced) return;
+    const els = Array.from(root.querySelectorAll('[data-autoscroll]'));
+    if (!els.length) return;
+    els.forEach(el => {
+      if (!el._asWired) { el._asWired = true; el._asT = 0; el._asPaused = false;
+        el.addEventListener('mouseenter', () => { el._asPaused = true; });
+        el.addEventListener('mouseleave', () => { el._asPaused = false; });
+        el.addEventListener('touchstart', () => { el._asPaused = true; }, { passive: true });
+      }
+    });
+    const sweep = 9000, pause = 1500;      // ms for one pass, ms hold at each end
+    const period = pause + sweep + pause + sweep;
+    let prev = performance.now();
+    const tick = (now) => {
+      const dt = Math.min(60, now - prev); prev = now;
+      els.forEach(el => {
+        const max = el.scrollHeight - el.clientHeight;
+        if (max < 8) return;
+        if (!el._asPaused) el._asT = (el._asT || 0) + dt;
+        const t = el._asT % period;
+        let pos;
+        if (t < pause) pos = 0;
+        else if (t < pause + sweep) pos = (t - pause) / sweep * max;
+        else if (t < pause + sweep + pause) pos = max;
+        else pos = max - (t - pause - sweep - pause) / sweep * max;
+        el.scrollTop = Math.max(0, Math.min(max, pos));
+      });
+      this._asRAF = requestAnimationFrame(tick);
+    };
+    this._asRAF = requestAnimationFrame(tick);
+  }
+
+  componentDidUpdate() { requestAnimationFrame(() => { this.onScroll(); this.setupFrameReveals(); }); }
+
+  setupFrameReveals() {
+    const root = this.pageRef.current;
+    if (!root) return;
+    if (this._frCleanup) { this._frCleanup.forEach(fn => fn()); }
+    this._frCleanup = [];
+    const frames = Array.from(root.querySelectorAll('[data-scrollframe]'));
+    frames.forEach(frame => {
+      const run = () => {
+        const fr = frame.getBoundingClientRect();
+        frame.querySelectorAll('[data-areveal]').forEach((el, i) => {
+          if (this.reduced) { el.style.opacity = '1'; el.style.transform = 'none'; return; }
+          const r = el.getBoundingClientRect();
+          const inView = r.top < fr.bottom - fr.height * 0.08 && r.bottom > fr.top + fr.height * 0.03;
+          if (inView && el.dataset.ashown !== '1') {
+            el.dataset.ashown = '1';
+            el.style.transition = 'opacity .6s ease, transform .7s cubic-bezier(.22,.61,.36,1)';
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          } else if (!inView && el.dataset.ashown === '1') {
+            el.dataset.ashown = '';
+            el.style.transition = 'opacity .3s ease, transform .3s ease';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+          }
+        });
+      };
+      frame.addEventListener('scroll', run, { passive: true });
+      this._frCleanup.push(() => frame.removeEventListener('scroll', run));
+      if (!frame._cueWired) {
+        frame._cueWired = true;
+        const cue = frame.parentElement ? frame.parentElement.querySelector('[data-scrollcue]') : null;
+        frame.addEventListener('scroll', () => {
+          frame._userScrolled = true;
+          if (cue && frame.scrollTop > 6) { cue.style.transition = 'opacity .4s ease'; cue.style.opacity = '0'; }
+        }, { passive: true });
+      }
+      run(); setTimeout(run, 160); setTimeout(run, 520);
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScrollRAF);
+    window.removeEventListener('resize', this.onResize);
+    if (this.onMouseTrail) window.removeEventListener('mousemove', this.onMouseTrail);
+    if (this.ro) this.ro.disconnect();
+    if (this.io) this.io.disconnect();
+    if (this._frCleanup) this._frCleanup.forEach(fn => fn());
+    if (this._asRAF) cancelAnimationFrame(this._asRAF);
+  }
+
+  initInk() {
+    const root = this.pageRef.current;
+    if (!root) return;
+    this.inkSvgs = Array.from(root.querySelectorAll('svg[data-ink]'));
+    this.inkSvgs.forEach(svg => svg.querySelectorAll('path').forEach(p => {
+      let len = 300; try { len = p.getTotalLength() || 300; } catch (e) {}
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = this.reduced ? 0 : len;
+    }));
+    this._inkDone = new WeakSet();
+  }
+
+  initReveal() {
+    const root = this.pageRef.current;
+    if (!root) return;
+    this.revealEls = Array.from(root.querySelectorAll('[data-reveal]'));
+    if (this.reduced) this.revealEls.forEach(e => { e.style.opacity = '1'; e.style.transform = 'none'; });
+  }
+
+  onScroll() {
+    const vh = window.innerHeight;
+    const page = this.pageRef.current;
+    if (!page) return;
+    if (!this._asStarted) { this._asStarted = true; this.setupAutoScroll(); }
+    this.checkCues(vh);
+    if (!this.sketchEls) this.sketchEls = Array.from(page.querySelectorAll('[data-sketch]'));
+    this.sketchEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const start = vh * 0.92, end = vh * 0.30;
+      let p = (start - r.top) / (start - end);
+      p = Math.max(0, Math.min(1, p));
+      el.style.setProperty('--build', this.reduced ? '1' : p.toFixed(3));
+    });
+    if (this.reduced) return;
+    // Reveals: bidirectional — animate in when entering view, reset when leaving, so they replay on scroll up too.
+    if (this.revealEls) this.revealEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const inView = r.top < vh * 0.86 && r.bottom > vh * 0.10;
+      if (inView && el.dataset.shown !== '1') {
+        el.dataset.shown = '1';
+        const d = el.dataset.idx ? (parseInt(el.dataset.idx, 10) || 0) * 160 : 0;
+        el.style.transition = `opacity .6s ease ${d}ms, transform .7s cubic-bezier(.22,.61,.36,1) ${d}ms`;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      } else if (!inView && el.dataset.shown === '1') {
+        el.dataset.shown = '';
+        el.style.transition = 'opacity .35s ease, transform .35s ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+      }
+    });
+    // Ink strokes: draw in when entering view, retract when leaving, so they redraw every time.
+    if (this.inkSvgs) this.inkSvgs.forEach(svg => {
+      const r = svg.getBoundingClientRect();
+      const inView = r.top < vh * 0.85 && r.bottom > vh * 0.06;
+      const drawn = svg.dataset.drawn === '1';
+      if (inView && !drawn) {
+        svg.dataset.drawn = '1';
+        svg.querySelectorAll('path').forEach((p, i) => {
+          p.style.transition = `stroke-dashoffset .9s cubic-bezier(.22,.61,.36,1) ${i * 0.1}s`;
+          p.style.strokeDashoffset = '0';
+        });
+      } else if (!inView && drawn) {
+        svg.dataset.drawn = '';
+        svg.querySelectorAll('path').forEach(p => {
+          p.style.transition = 'stroke-dashoffset .4s ease';
+          p.style.strokeDashoffset = p.style.strokeDasharray;
+        });
+      }
+    });
+  }
+
+  // ---- slider ----
+  startDrag = (e) => { this.dragging = true; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (er) {} this.applySlider(e); };
+  moveDrag = (e) => { if (this.dragging) this.applySlider(e); };
+  endDrag = () => { this.dragging = false; };
+  applySlider(e) {
+    const c = this.sliderRef.current; if (!c) return;
+    const r = c.getBoundingClientRect();
+    let p = (e.clientX - r.left) / r.width * 100;
+    p = Math.max(3, Math.min(97, p));
+    if (this.beforeRef.current) this.beforeRef.current.style.clipPath = `inset(0 ${(100 - p).toFixed(2)}% 0 0)`;
+    if (this.handleRef.current) this.handleRef.current.style.left = p.toFixed(2) + '%';
+  }
+
+  // ---- cursor trail ----
+  makeTrail() {
+    const cols = ['#1A1815', '#FF4A26', '#1D4ED8'];
+    let i = 0, last = 0;
+    return (e) => {
+      const now = performance.now();
+      if (now - last < 38) return; last = now;
+      const c = this.trailRef.current; if (!c) return;
+      const d = document.createElement('div');
+      const col = cols[(i++) % 3];
+      d.style.cssText = `position:absolute;left:${e.clientX}px;top:${e.clientY}px;width:8px;height:8px;border-radius:50%;background:${col};opacity:.5;transform:translate(-50%,-50%);transition:opacity .55s ease, transform .55s ease`;
+      c.appendChild(d);
+      requestAnimationFrame(() => { d.style.opacity = '0'; d.style.transform = 'translate(-50%,-50%) scale(.2)'; });
+      setTimeout(() => d.remove(), 600);
+    };
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const note = form.querySelector('[data-thanks]');
+    if (note) note.style.display = 'block';
+    form.querySelectorAll('input, textarea').forEach(el => { el.value = ''; });
+  };
+
+  renderVals() {
+    const loc = this.state.locale;
+    const t = this.STR[loc];
+    const hv = (this.props.headlineVariant && t.headlines[this.props.headlineVariant]) ? this.props.headlineVariant : '1';
+    const h = t.headlines[hv];
+    return {
+      t,
+      hpre: h.pre, hemph: h.emph, hpost: h.post,
+      word1: t.words[0], word2: t.words[1], word3: t.words[2], about: t.about,
+      step1: t.steps[0], step2: t.steps[1], step3: t.steps[2], step4: t.steps[3], step5: t.steps[4],
+      isEN: loc === 'en', isPT: loc === 'pt',
+      setEN: () => this.setLoc('en'), setPT: () => this.setLoc('pt'),
+      ui: t.ui,
+      rest: t.rest, hotel: t.hotel, mobile: t.mobile, site: this.SITE, hsite: this.HSITE,
+      co1: t.hotel.callouts[0], co2: t.hotel.callouts[1], co3: t.hotel.callouts[2], co4: t.hotel.callouts[3],
+      restIsSite: this.state.restView === 'site', restIsSketch: this.state.restView === 'sketch',
+      hotelIsBefore: this.state.hotelView === 'before', hotelIsAfter: this.state.hotelView === 'after',
+      setRestSite: this.setRestSite, setRestSketch: this.setRestSketch,
+      setHotelBefore: this.setHotelBefore, setHotelAfter: this.setHotelAfter,
+      startDrag: this.startDrag, moveDrag: this.moveDrag, endDrag: this.endDrag,
+      onSubmit: this.onSubmit,
+      pageRef: this.pageRef,
+      sliderRef: this.sliderRef, beforeRef: this.beforeRef, handleRef: this.handleRef, trailRef: this.trailRef,
+      year: new Date().getFullYear()
+    };
+  }
+}
+</script>
+</body>
+</html>
