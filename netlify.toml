@@ -3,3 +3,10 @@
 [build]
   publish = "site"
   command = ""
+
+# Always revalidate so a redeploy is picked up immediately (no stale phone cache).
+# The files are tiny and served from Netlify's CDN, so this is cheap.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
