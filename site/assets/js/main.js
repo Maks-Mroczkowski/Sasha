@@ -360,21 +360,41 @@ function initMenu() {
 }
 
 /* --------------------- Fit the case-study mockups ----------------------- */
-/* The three browser mockups are mini desktop websites. On screens narrower
-   than their comfortable design width they'd be cramped, so render them at
-   that width and scale the whole frame down to fit (zoom keeps the layout box
-   correct, unlike transform). On wide screens they stay full-width. */
+/* The mockups are mini desktop websites. On screens narrower than their
+   comfortable design width they'd cram/overflow, so render each at that width
+   and scale it down with transform:scale (works on every mobile browser,
+   unlike `zoom`). Each mockup is wrapped once in a box that clips the overflow
+   and is sized to the scaled height. On wide screens the scaling is removed. */
 
 function fitMockups() {
   $$('[data-fit]').forEach(frame => {
     const design = parseFloat(frame.dataset.fit);
-    const available = frame.parentElement.clientWidth;
+
+    // Wrap the mockup once, so we can reserve its scaled height and clip overflow.
+    let wrap = frame.parentElement;
+    if (!wrap.hasAttribute('data-fitwrap')) {
+      wrap = document.createElement('div');
+      wrap.setAttribute('data-fitwrap', '');
+      frame.parentElement.insertBefore(wrap, frame);
+      wrap.appendChild(frame);
+    }
+
+    const available = wrap.clientWidth;
     if (available < design) {
+      const scale = available / design;
       frame.style.width = design + 'px';
-      frame.style.zoom = (available / design).toFixed(3);
+      frame.style.maxWidth = 'none';               // beat any max-width:100% so it renders at design width
+      frame.style.transformOrigin = 'top left';
+      frame.style.transform = 'scale(' + scale + ')';
+      wrap.style.overflow = 'hidden';
+      wrap.style.height = (frame.offsetHeight * scale) + 'px';
     } else {
       frame.style.width = '';
-      frame.style.zoom = '';
+      frame.style.maxWidth = '';
+      frame.style.transform = '';
+      frame.style.transformOrigin = '';
+      wrap.style.overflow = '';
+      wrap.style.height = '';
     }
   });
 }
