@@ -111,3 +111,6 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
 /* The phone pair scales to fit via the fitMockups() scaler (data-fit), so it no
    longer needs width-specific transform/padding hacks here. */
 @media (max-width:560px){ [data-herogrid]{ text-align:left; } }
+/* On mobile the hero photo stacks under the CTAs; give it room so the
+   "sou eu" note doesn't crowd the button above it. */
+@media (max-width:880px){ [data-herophoto]{ margin-top:44px; } }
