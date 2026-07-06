@@ -26,6 +26,9 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
    internal desktop layouts get cramped. Reflow them to single-column so the
    content stays uniform and readable, like a real responsive site. */
 .mockup-scaled [data-dishgrid] { grid-template-columns: 1fr !important; }
+/* When the hotel booking bar wraps on mobile, make its button a full-width CTA
+   below the dates instead of floating right on its own line. */
+.mockup-scaled [data-availbtn] { flex: 1 1 100%; margin-left: 0 !important; text-align: center; }
 
 /* ---- Mobile menu (hamburger) ---- */
 .nav-burger{ display:none; }              /* hidden on desktop; the section links show instead */
