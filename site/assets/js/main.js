@@ -382,6 +382,9 @@ function fitMockups() {
     const available = wrap.clientWidth;
     if (available < design) {
       const scale = available / design;
+      // Mark the mockup as scaled so its internals can adopt mobile-friendly
+      // tweaks (see .mockup-scaled rules in style.css). Set before measuring.
+      frame.classList.add('mockup-scaled');
       frame.style.width = design + 'px';
       frame.style.maxWidth = 'none';               // beat any max-width:100% so it renders at design width
       frame.style.transformOrigin = 'top left';
@@ -389,6 +392,7 @@ function fitMockups() {
       wrap.style.overflow = 'hidden';
       wrap.style.height = (frame.offsetHeight * scale) + 'px';
     } else {
+      frame.classList.remove('mockup-scaled');
       frame.style.width = '';
       frame.style.maxWidth = '';
       frame.style.transform = '';

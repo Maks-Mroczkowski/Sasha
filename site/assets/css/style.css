@@ -22,6 +22,11 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
    width — otherwise the case-study mockups overflow and get clipped on phones. */
 [data-herogrid] > *, [data-servgrid] > *, [data-casegrid] > *, [data-boardgrid] > * { min-width: 0; }
 
+/* When a mockup is scaled down for mobile (main.js adds .mockup-scaled), its
+   internal desktop layouts get cramped. Reflow them to single-column so the
+   content stays uniform and readable, like a real responsive site. */
+.mockup-scaled [data-dishgrid] { grid-template-columns: 1fr !important; }
+
 /* ---- Mobile menu (hamburger) ---- */
 .nav-burger{ display:none; }              /* hidden on desktop; the section links show instead */
 .nav-menu{ display:none; }                /* only shown at <=880px, and only when opened */
