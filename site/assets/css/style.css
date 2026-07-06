@@ -18,6 +18,37 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
    attribute, so force it here. */
 [hidden]{ display:none !important; }
 
+/* Let grid children shrink to their track instead of their content's natural
+   width — otherwise the case-study mockups overflow and get clipped on phones. */
+[data-herogrid] > *, [data-servgrid] > *, [data-casegrid] > *, [data-boardgrid] > * { min-width: 0; }
+
+/* ---- Mobile menu (hamburger) ---- */
+.nav-burger{ display:none; }              /* hidden on desktop; the section links show instead */
+.nav-menu{ display:none; }                /* only shown at <=880px, and only when opened */
+@media (max-width:880px){
+  [data-navcta]{ display:none !important; }   /* the CTA moves into the menu on mobile */
+  .nav-burger{
+    display:inline-flex; flex-direction:column; justify-content:center; gap:5px;
+    width:42px; height:42px; padding:10px; background:none; border:none; cursor:pointer;
+  }
+  .nav-burger span{ display:block; height:2px; background:#1A1815; border-radius:2px; transition:transform .25s ease, opacity .2s ease; }
+  .nav-burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .nav-burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .nav-menu{
+    display:flex; flex-direction:column; gap:2px;
+    position:absolute; top:calc(100% + 8px); right:clamp(12px,4vw,24px); min-width:220px;
+    background:#F4EEE2; border:1px solid #1a181514; border-radius:16px;
+    box-shadow:0 24px 48px -20px rgba(26,24,21,.4); padding:10px;
+  }
+  .nav-menu a{
+    font-family:'General Sans','Inter',sans-serif; font-weight:500; font-size:16px;
+    color:#1A1815; text-decoration:none; padding:12px 14px; border-radius:10px;
+  }
+  .nav-menu a:hover{ background:#1a18150a; }
+  .nav-menu .menu-cta{ margin-top:6px; background:#1A1815; color:#F4EEE2; font-weight:600; text-align:center; }
+}
+
 /* --- Keyframes --- */
 @keyframes floatcue{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(9px); } }
 /* Same bob, but preserves the translateX(-50%) horizontal centering the scroll-cue
@@ -77,6 +108,6 @@ input::placeholder, textarea::placeholder{ color:#1A181599; }
 [data-mobilegrid] > div{ min-width:0; }
 [data-phonepair]{ max-width:100%; }
 @media (max-width:1024px){ [data-mobilegrid]{ grid-template-columns:1fr; gap:36px; } }
-@media (max-width:460px){ [data-phonepair]{ gap:10px !important; padding:20px 6px !important; } }
-@media (max-width:380px){ [data-phonepair]{ transform:scale(.86); transform-origin:top center; } }
+/* The phone pair scales to fit via the fitMockups() scaler (data-fit), so it no
+   longer needs width-specific transform/padding hacks here. */
 @media (max-width:560px){ [data-herogrid]{ text-align:left; } }

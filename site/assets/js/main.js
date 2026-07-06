@@ -343,6 +343,42 @@ function showFormError(thanks) {
   thanks.style.display = 'block';
 }
 
+/* ----------------------------- Mobile menu ------------------------------ */
+
+function initMenu() {
+  const btn = $('[data-menu-toggle]');
+  const menu = $('[data-menu]');
+  if (!btn || !menu) return;
+  const setOpen = (open) => {
+    setHidden(menu, !open);
+    btn.setAttribute('aria-expanded', String(open));
+  };
+  btn.addEventListener('click', (e) => { e.stopPropagation(); setOpen(menu.hasAttribute('hidden')); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('click', (e) => { if (!menu.contains(e.target) && e.target !== btn) setOpen(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 880) setOpen(false); });
+}
+
+/* --------------------- Fit the case-study mockups ----------------------- */
+/* The three browser mockups are mini desktop websites. On screens narrower
+   than their comfortable design width they'd be cramped, so render them at
+   that width and scale the whole frame down to fit (zoom keeps the layout box
+   correct, unlike transform). On wide screens they stay full-width. */
+
+function fitMockups() {
+  $$('[data-fit]').forEach(frame => {
+    const design = parseFloat(frame.dataset.fit);
+    const available = frame.parentElement.clientWidth;
+    if (available < design) {
+      frame.style.width = design + 'px';
+      frame.style.zoom = (available / design).toFixed(3);
+    } else {
+      frame.style.width = '';
+      frame.style.zoom = '';
+    }
+  });
+}
+
 /* -------------------------------- Boot ---------------------------------- */
 
 async function boot() {
@@ -353,10 +389,12 @@ async function boot() {
 
   initLanguageToggle();
   initViewToggles();
+  initMenu();
   initContactForm();
   initInteractiveStyles('hover', 'mouseenter', 'mouseleave');
   initInteractiveStyles('focus', 'focusin', 'focusout');
 
+  fitMockups();
   initInk();
   initReveal();
   onScroll();
@@ -370,10 +408,10 @@ async function boot() {
     requestAnimationFrame(() => { onScroll(); scrolling = false; });
   };
   window.addEventListener('scroll', onScrollThrottled, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', () => { onScroll(); fitMockups(); });
 
   // Re-measure once web fonts have loaded (text sizes shift ink/reveal geometry).
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(onScroll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { onScroll(); fitMockups(); });
 
   // Cursor trail: desktop, fine pointer, motion allowed, and enabled in config.
   if (hasFinePointer && !prefersReducedMotion && ENABLE_CURSOR_TRAIL) {
